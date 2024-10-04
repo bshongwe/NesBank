@@ -1,7 +1,4 @@
-Creative Commons Non-Commercial (CC BY-NC 4.0)
-***Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)***
-
-Copyright (c) 2024 Ernest Bhekizwe Shongwe
+Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
 
 CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE LEGAL SERVICES. DISTRIBUTION OF THIS LICENSE DOES NOT CREATE AN ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES REGARDING THE INFORMATION PROVIDED, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM ITS USE.
 
@@ -31,36 +28,15 @@ By exercising the Licensed Rights (defined below), You accept and agree to be bo
 
 For the full license text, visit: [https://creativecommons.org/licenses/by-nc/4.0/legalcode](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
 
-...
+This software is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International**. You are free to:
 
-GNU Affero General Public License (AGPL-3.0)
-***GNU AFFERO GENERAL PUBLIC LICENSE***
+- Share: Copy and redistribute the material in any medium or format.
+- Adapt: Remix, transform, and build upon the material.
 
-Version 3, 19 November 2007
+Under the following terms:
 
-Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+- **Attribution**: You must give appropriate credit, provide a link to the license, and indicate if changes were made.
+- **NonCommercial**: You may not use the material for commercial purposes.
 
-### Preamble
-The GNU Affero General Public License is a free, copyleft license for software and other kinds of works, specifically designed to ensure cooperation with the community in the case of network server software.
-
-### Section 1 – Basic Permissions
-This License explicitly affirms your unlimited permission to run the unmodified Program. The output from running a covered work is covered by this License only if the output, given its content, constitutes a covered work. This License acknowledges your rights of fair use or other equivalent, as provided by copyright law.
-
-You may make, run and propagate covered works that you do not convey, without conditions so long as your license otherwise remains in force. You may convey covered works to others for the sole purpose of having them make modifications exclusively for you, or provide you with facilities for running those works, provided that you comply with the terms of this License in conveying all material for which you do not control copyright.
-
-### Section 5 – Conveying Modified Source Versions
-You may convey a work based on the Program, or the modifications to produce it from the Program, in the form of source code under the terms of Section 4, provided that you also meet all of these conditions:
-1. The work must carry prominent notices stating that you modified it, and giving a relevant date.
-2. The work must carry prominent notices stating that it is released under this License and any conditions added under Section 7. This requirement modifies the requirement in section 4 to “keep intact all notices.”
-...
-
-### Section 13 – Remote Network Interaction; Use with the GNU General Public License
-Notwithstanding any other provision of this License, if you modify the Program, your modified version must prominently offer all users interacting with it remotely through a computer network the opportunity to receive the Corresponding Source of your version by providing access to the Corresponding Source from a network server at no charge, through some standard or customary means of facilitating copying of software.
-
-...
-
-### Section 15 – Disclaimer of Warranty
-There is no warranty for the program, to the extent permitted by applicable law. Except when otherwise stated in writing the copyright holders and/or other parties provide the program “as is” without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose.
-
-For the full license text, visit: [https://www.gnu.org/licenses/agpl-3.0.en.html](https://www.gnu.org/licenses/agpl-3.0.en.html)
+For any commercial use of this software, please refer to the [GNU Affero General Public License (AGPL-3.0)](LICENSE-AGPL.md).
 

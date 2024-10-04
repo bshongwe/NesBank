@@ -76,6 +76,15 @@ Docker ensures that NesBank runs the same way on any machine, making deployments
 **Why?**  
 Vercel ensures quick load times and a great user experience, while GCP provides robust infrastructure for backend services.
 
+## 📄 License
+
+NesBank is available under a **dual license**:
+
+- **For Non-Commercial Use:** You may use the software under the terms of [Creative Commons Non-Commercial (CC BY-NC 4.0)](LICENSE-CC-BY-NC.md).
+- **For Commercial Use and Open-Source Contributions:** You must use the software under the [GNU Affero General Public License (AGPL-3.0)](LICENSE-AGPL.md).
+
+Choose the license that fits your needs. For commercial usage, you are required to comply with AGPL-3.0, which includes sharing source code modifications.
+
 ---
 
 ## 🔑 **Key Features**
