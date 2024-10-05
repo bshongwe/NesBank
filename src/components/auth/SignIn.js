@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // For redirection
-import authService from '../../services/authService'; // Mock service for login API
+import { useRouter } from 'next/router'; // Using Next.js router for navigation
+import authService from '../../services/authService'; // Service for login API
 import './signin.css'; // Importing styles
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // React Router's hook to navigate
+  const router = useRouter(); // Next.js router for navigation
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+    setError(''); // Reset error state before each sign-in attempt
     try {
       const user = await authService.login(email, password); // Call login API
       if (user) {
         // Upon successful login, redirect to the dashboard
-        navigate('/dashboard');
+        router.push('/dashboard');
       }
-    } catch (err) {
-      setError('Invalid email or password.');
+    } catch {
+      setError('Invalid email or password.'); // Set error message on failure
     }
   };
 
