@@ -151,7 +151,7 @@ const GetStartedModal = ({ isOpen, onClose }) => {
               </button>
             </form>
             <p className="mt-4 text-sm text-gray-600">
-              Don't have an account?{" "}
+              Do not have an account?{" "}
               <button
                 type="button"
                 className="text-blue-600 hover:underline"
