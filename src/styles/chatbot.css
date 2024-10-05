@@ -1,0 +1,102 @@
+/* ChatBot UI CSS Settings */
+
+.chatbot-container {
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 100, 255, 0.2); /* Light glassy blue background */
+  backdrop-filter: blur(15px) saturate(180%);
+  border-radius: 7px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 255, 0.4); /* Enhanced glossy effect */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  height: 500px; /* Increased height for the chat modal */
+}
+
+.chatbot-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: 400px; /* Adjust to fit your modal size */
+  padding: 10px;
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Custom scrollbar styles */
+.chatbot-messages {
+  scrollbar-width: thin; /* For Firefox */
+}
+
+.chatbot-messages::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5); /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.chatbot-messages::-webkit-scrollbar-track {
+  background: transparent; /* Background of the scrollbar track */
+}
+
+.chatbot-message {
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+/* User Message Style */
+.user-bubble {
+  background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white background */
+  color: #000; /* Dark text for user messages */
+  align-self: flex-end;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Increased shadow effect */
+  position: relative;
+  overflow: hidden; /* Ensure overflow hidden for bubble */
+}
+
+/* Bot Message Style */
+.bot-bubble {
+  background-color: rgba(0, 50, 150, 0.6); /* Darker blue background for bot messages */
+  color: #00ff00; /* Keep bright green text */
+  align-self: flex-start;
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 255, 0.2); /* Increased shadow effect */
+  position: relative;
+  overflow: hidden; /* Ensure overflow hidden for bubble */
+}
+
+/* Input area */
+.chatbot-input {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.chatbot-input-field {
+  flex-grow: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white input field */
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.chatbot-send-button {
+  background-color: rgba(255, 255, 255, 0.8); /* Light button for contrast */
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  margin-left: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 255, 0.2); /* Glossy effect on button */
+}
+
+.chatbot-send-button:hover {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 255, 0.3); /* More glossy hover effect */
+}
