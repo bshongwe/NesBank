@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import Modal from "../Modal"; // Ensure correct path
 import { toast } from "react-toastify"; // Import the toast library
 import authService from "../../services/authService"; // Import your auth service
-import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
+import { useRouter } from "next/router"; // Import useRouter for Next.js routing
 
 const GetStartedModal = ({ isOpen, onClose }) => {
   const [isSigningUp, setIsSigningUp] = useState(true); // State to toggle between Sign Up and Sign In
   const [email, setEmail] = useState(""); // State for email input
   const [password, setPassword] = useState(""); // State for password input
   const [confirmPassword, setConfirmPassword] = useState(""); // State for confirm password input
-  const navigate = useNavigate(); // Initialize useNavigate for redirection
+  const router = useRouter(); // Initialize useRouter for routing
 
   // Toggle function to switch between Sign In and Sign Up
   const toggleSignInSignUp = () => {
@@ -20,8 +20,8 @@ const GetStartedModal = ({ isOpen, onClose }) => {
   const handleSignUp = async (e) => {
     e.preventDefault(); // Prevent form submission
     if (password !== confirmPassword) {
-        toast.error("Passwords do not match."); // Show error toast
-        return; // Stop execution if passwords don't match
+      toast.error("Passwords do not match."); // Show error toast
+      return; // Stop execution if passwords don't match
     }
     try {
       await authService.signUp(email, password); // Assume signUp method exists in authService
@@ -41,7 +41,7 @@ const GetStartedModal = ({ isOpen, onClose }) => {
       const user = await authService.login(email, password); // Assume login method exists in authService
       toast.success(`${user.name} has signed in successfully!`); // Show success toast with username
       onClose(); // Close the modal
-      navigate("/dashboard"); // Redirect to the dashboard
+      router.push("/dashboard"); // Redirect to the dashboard using Next.js routing
     } catch (error) {
       toast.error("Invalid credentials, please try again."); // Show error toast
     }
