@@ -1,40 +1,37 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import SignIn from './components/auth/SignIn';
 import Dashboard from './Dashboard';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Navbar from './components/navbar/Navbar';
-import authService from './services/authService'; // For authentication checks
 
 const App = () => {
+  const router = useRouter();
+  const { pathname } = router;
+
+  // Define a mapping for routes to their components
+  const routeComponents = {
+    '/': <h1>Home Page</h1>,
+    '/signin': <SignIn />,
+    '/dashboard': (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
+    '/profile': (
+      <ProtectedRoute>
+        <Profile />
+      </ProtectedRoute>
+    ),
+  };
+
   return (
-    <Router>
+    <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<h1>Home Page</h1>} />
-        <Route path="/signin" element={<SignIn />} />
-        {/* Protecting the dashboard route */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        {/* Adding a protected route for the profile */}
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<h1>404 - Page Not Found</h1>} /> {/* Catch-all for undefined routes */}
-      </Routes>
-    </Router>
+      {/* Render the corresponding component based on the current path */}
+      {routeComponents[pathname] || <h1>404 - Page Not Found</h1>}
+    </>
   );
 };
 
