@@ -1,55 +1,68 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { Link } from 'next/link'; // Update to Next.js Link
 import authService from '../../services/authService'; // Import the authentication service
-import Modal from './Modal'; // Import the Modal component
+import Modal from './Modal'; // Import Modal component
+import SignIn from './SignIn'; // Import SignIn component
+import SignUp from './SignUp'; // Import SignUp component
 
 const Navbar = () => {
-  const router = useRouter();
-  const isAuthenticated = authService.isAuthenticated(); // Check if the user is logged in
-  const user = authService.getUser(); // Get the user details (if logged in)
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(true); // State to toggle between Sign In and Sign Up
+  const isAuthenticated = authService.isAuthenticated();
+  const user = authService.getUser();
 
-  const [isModalOpen, setModalOpen] = useState(false); // State to manage modal visibility
-
-  // Function to handle user logout
   const handleLogout = () => {
-    authService.logout(); // Clear user session
-    router.push('/signin'); // Redirect to the Sign In page after logout
+    authService.logout();
+    // Redirect to the homepage or sign in page after logout if needed
+  };
+
+  const toggleModal = () => {
+    setModalOpen(!isModalOpen);
+  };
+
+  const handleToggle = () => {
+    setIsSignIn(!isSignIn);
   };
 
   return (
-    <nav className="navbar">
-      <Link href="/" className="navbar-brand">NesBank</Link>
-      <ul className="navbar-links">
-        {isAuthenticated ? ( // Check if the user is authenticated
-          <>
+    <>
+      <nav className="navbar">
+        <Link href="/" className="navbar-brand">NesBank</Link>
+        <ul className="navbar-links">
+          {isAuthenticated ? (
+            <>
+              <li>
+                <Link href="/dashboard">Dashboard</Link>
+              </li>
+              <li className="navbar-profile">
+                <span className="profile-name">{user.name}</span>
+                <ul className="profile-dropdown">
+                  <li>
+                    <Link href="/profile">Profile</Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout} className="logout-button">Logout</button>
+                  </li>
+                </ul>
+              </li>
+            </>
+          ) : (
             <li>
-              <Link href="/dashboard">Dashboard</Link>
+              <button onClick={toggleModal} className="get-started-button">Get Started</button>
             </li>
-            <li className="navbar-profile">
-              <span className="profile-name">{user.name}</span>
-              <ul className="profile-dropdown">
-                <li>
-                  <Link href="/profile">Profile</Link>
-                </li>
-                <li>
-                  <button onClick={handleLogout} className="logout-button">Logout</button>
-                </li>
-              </ul>
-            </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <button onClick={() => setModalOpen(true)} className="get-started-button">Get Started</button>
-            </li>
-          </>
-        )}
-      </ul>
+          )}
+        </ul>
+      </nav>
 
-      {/* Render the modal for Sign In and Sign Up */}
-      <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
-    </nav>
+      {/* Modal Component */}
+      <Modal isOpen={isModalOpen} onClose={toggleModal}>
+        {isSignIn ? (
+          <SignIn onToggle={handleToggle} />
+        ) : (
+          <SignUp onToggle={handleToggle} />
+        )}
+      </Modal>
+    </>
   );
 };
 

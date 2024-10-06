@@ -10,6 +10,20 @@ const Modal = ({ isOpen, onClose }) => {
     setIsSignIn((prev) => !prev); // Toggle between Sign In and Sign Up
   };
 
+  const handleSignIn = (email, password) => {
+    // Implement sign-in logic here
+    console.log("Signing in with:", email, password);
+    // After successful sign-in, you can close the modal
+    onClose();
+  };
+
+  const handleSignUp = (email, password) => {
+    // Implement sign-up logic here
+    console.log("Signing up with:", email, password);
+    // After successful sign-up, you can close the modal
+    onClose();
+  };
+
   return (
     <Transition show={isOpen} as={React.Fragment}>
       <Dialog onClose={onClose} className="relative z-50">
@@ -37,9 +51,9 @@ const Modal = ({ isOpen, onClose }) => {
           <div className="fixed inset-0 flex items-center justify-center">
             <Dialog.Panel className="w-full max-w-md p-6 bg-white rounded-lg">
               {isSignIn ? (
-                <SignIn onClose={onClose} />
+                <SignIn onSignIn={handleSignIn} onClose={onClose} />
               ) : (
-                <SignUp onClose={onClose} />
+                <SignUp onSignUp={handleSignUp} onClose={onClose} />
               )}
               <button
                 onClick={toggleForm}
