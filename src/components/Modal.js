@@ -1,29 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import SignIn from './SignIn'; // Ensure this path is correct
-import SignUp from './SignUp'; // Ensure this path is correct
 
-const Modal = ({ isOpen, onClose }) => {
-  const [isSignIn, setIsSignIn] = useState(true); // State to track which form to display
-
-  const toggleForm = () => {
-    setIsSignIn((prev) => !prev); // Toggle between Sign In and Sign Up
-  };
-
-  const handleSignIn = (email, password) => {
-    // Implement sign-in logic here
-    console.log("Signing in with:", email, password);
-    // After successful sign-in, you can close the modal
-    onClose();
-  };
-
-  const handleSignUp = (email, password) => {
-    // Implement sign-up logic here
-    console.log("Signing up with:", email, password);
-    // After successful sign-up, you can close the modal
-    onClose();
-  };
-
+const Modal = ({ isOpen, onClose, children }) => {
   return (
     <Transition show={isOpen} as={React.Fragment}>
       <Dialog onClose={onClose} className="relative z-50">
@@ -50,17 +28,7 @@ const Modal = ({ isOpen, onClose }) => {
         >
           <div className="fixed inset-0 flex items-center justify-center">
             <Dialog.Panel className="w-full max-w-md p-6 bg-white rounded-lg">
-              {isSignIn ? (
-                <SignIn onSignIn={handleSignIn} onClose={onClose} />
-              ) : (
-                <SignUp onSignUp={handleSignUp} onClose={onClose} />
-              )}
-              <button
-                onClick={toggleForm}
-                className="mt-4 text-sm text-gray-500 underline"
-              >
-                {isSignIn ? "Need an account? Sign Up" : "Already have an account? Sign In"}
-              </button>
+              {children}
               <button
                 onClick={onClose}
                 className="mt-4 text-sm text-gray-500 underline"

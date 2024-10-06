@@ -1,68 +1,51 @@
-import React, { useState } from 'react';
-import { Link } from 'next/link'; // Update to Next.js Link
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import authService from '../../services/authService'; // Import the authentication service
-import Modal from './Modal'; // Import Modal component
-import SignIn from './SignIn'; // Import SignIn component
-import SignUp from './SignUp'; // Import SignUp component
 
 const Navbar = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [isSignIn, setIsSignIn] = useState(true); // State to toggle between Sign In and Sign Up
-  const isAuthenticated = authService.isAuthenticated();
-  const user = authService.getUser();
+  const navigate = useNavigate();
+  const isAuthenticated = authService.isAuthenticated(); // Check if the user is logged in
+  const user = authService.getUser(); // Get the user details (if logged in)
 
+  // Function to handle user logout
   const handleLogout = () => {
-    authService.logout();
-    // Redirect to the homepage or sign in page after logout if needed
-  };
-
-  const toggleModal = () => {
-    setModalOpen(!isModalOpen);
-  };
-
-  const handleToggle = () => {
-    setIsSignIn(!isSignIn);
+    authService.logout(); // Clear user session
+    navigate('/signin'); // Redirect to the Sign In page after logout
   };
 
   return (
-    <>
-      <nav className="navbar">
-        <Link href="/" className="navbar-brand">NesBank</Link>
-        <ul className="navbar-links">
-          {isAuthenticated ? (
-            <>
-              <li>
-                <Link href="/dashboard">Dashboard</Link>
-              </li>
-              <li className="navbar-profile">
-                <span className="profile-name">{user.name}</span>
-                <ul className="profile-dropdown">
-                  <li>
-                    <Link href="/profile">Profile</Link>
-                  </li>
-                  <li>
-                    <button onClick={handleLogout} className="logout-button">Logout</button>
-                  </li>
-                </ul>
-              </li>
-            </>
-          ) : (
+    <nav className="navbar">
+      <Link to="/" className="navbar-brand">NesBank</Link>
+      <ul className="navbar-links">
+        {isAuthenticated ? ( // Check if the user is authenticated
+          <>
+            {/* Show the dashboard link */}
             <li>
-              <button onClick={toggleModal} className="get-started-button">Get Started</button>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
-          )}
-        </ul>
-      </nav>
-
-      {/* Modal Component */}
-      <Modal isOpen={isModalOpen} onClose={toggleModal}>
-        {isSignIn ? (
-          <SignIn onToggle={handleToggle} />
+            
+            {/* Display user profile name with a dropdown for profile and logout */}
+            <li className="navbar-profile">
+              <span className="profile-name">{user.name}</span> {/* Display user's name */}
+              <ul className="profile-dropdown">
+                <li>
+                  <Link to="/profile">Profile</Link> {/* Profile link */}
+                </li>
+                <li>
+                  <button onClick={handleLogout} className="logout-button">Logout</button> {/* Logout button */}
+                </li>
+              </ul>
+            </li>
+          </>
         ) : (
-          <SignUp onToggle={handleToggle} />
+          <>
+            {/* If not authenticated, show Sign In and Sign Up links */}
+            <li><Link to="/signin">Sign In</Link></li>
+            <li><Link to="/signup">Sign Up</Link></li>
+          </>
         )}
-      </Modal>
-    </>
+      </ul>
+    </nav>
   );
 };
 

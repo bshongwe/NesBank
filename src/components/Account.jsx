@@ -2,8 +2,6 @@ import React from "react";
 import Container from "./Container";
 import Title from "./Title";
 import { accountData } from "@/constants";
-// Importing icons from react-icons for demonstration. Adjust as per your setup.
-import { FaQuestionCircle } from "react-icons/fa"; // Fallback icon
 
 const Account = () => {
   return (
@@ -32,12 +30,7 @@ const Account = () => {
               key={item.name}
               className="rounded-2xl border border-gray-200 hover:border-gray-300 p-8 group hover:bg-gray-100 duration-300 cursor-pointer"
             >
-              {/* Use item.icon if available, else fallback to FaQuestionCircle */}
-              {item.icon ? (
-                <item.icon className="h-8 w-8" />
-              ) : (
-                <FaQuestionCircle className="h-8 w-8" />
-              )}
+              <item.icon className="h-8 w-8" />
               <h3 className="mt-6 font-semibold text-gray-900 group-hover:text-black duration-300">
                 {item.name}
               </h3>

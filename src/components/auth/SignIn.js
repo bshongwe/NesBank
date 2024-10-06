@@ -1,51 +1,49 @@
-import React, { useState } from "react";
-import authService from "../services/authService"; // Adjust the import path
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // For redirection
+import authService from '../../services/authService'; // Mock service for login API
+import './signin.css'; // Importing styles
 
-const SignIn = ({ onClose }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+const SignIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate(); // React Router's hook to navigate
 
-  const handleSubmit = async (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      await authService.login(email, password);
-      onClose(); // Close the modal on successful login
-      window.location.reload(); // Reload the page to update the user state
+      const user = await authService.login(email, password); // Call login API
+      if (user) {
+        // Upon successful login, redirect to the dashboard
+        navigate('/dashboard');
+      }
     } catch (err) {
-      setError(err.message);
+      setError('Invalid email or password.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {error && <p className="text-red-500">{error}</p>}
-      <div>
-        <label htmlFor="email" className="block text-sm">Email</label>
+    <div className="signin-container">
+      <h2>Sign In to NesBank</h2>
+      {error && <p className="error-message">{error}</p>}
+      <form onSubmit={handleSignIn}>
         <input
           type="email"
-          id="email"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="block w-full p-2 border border-gray-300 rounded"
         />
-      </div>
-      <div>
-        <label htmlFor="password" className="block text-sm">Password</label>
         <input
           type="password"
-          id="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="block w-full p-2 border border-gray-300 rounded"
         />
-      </div>
-      <button type="submit" className="w-full p-2 bg-blue-600 text-white rounded">
-        Sign In
-      </button>
-    </form>
+        <button type="submit" className="signin-button">Sign In</button>
+      </form>
+    </div>
   );
 };
 

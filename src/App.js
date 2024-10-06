@@ -5,14 +5,14 @@ import Dashboard from './Dashboard';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Navbar from './components/navbar/Navbar';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import authService from './services/authService'; // For authentication checks
 
 const App = () => {
   return (
     <Router>
       <Navbar />
       <Routes>
+        <Route path="/" element={<h1>Home Page</h1>} />
         <Route path="/signin" element={<SignIn />} />
         {/* Protecting the dashboard route */}
         <Route
@@ -34,7 +34,6 @@ const App = () => {
         />
         <Route path="*" element={<h1>404 - Page Not Found</h1>} /> {/* Catch-all for undefined routes */}
       </Routes>
-      <ToastContainer /> {/* ToastContainer should be inside the Router */}
     </Router>
   );
 };
