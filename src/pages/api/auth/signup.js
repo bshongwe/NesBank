@@ -1,4 +1,4 @@
-import { users, addUser, findUserByEmail } from '../../../../data'; // Simulate a database or import your database logic
+import { users, addUser, findUserByEmail } from '../../../data'; // Simulate a database or import your database logic
 import bcrypt from 'bcrypt'; // Make sure bcrypt is imported
 
 export default async function handler(req, res) {
