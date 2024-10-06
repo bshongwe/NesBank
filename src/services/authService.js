@@ -1,31 +1,53 @@
+// services/authService.js
+const API_URL = "/api/auth"; // Adjust to your actual API endpoint
+
 const authService = {
-  // Check if the user is authenticated by verifying the presence of user data in localStorage
   isAuthenticated: () => {
-    return !!localStorage.getItem('user'); // Check if user info exists in localStorage
+    return !!localStorage.getItem("user"); // Check if user data is stored in local storage
   },
-
-  // Simulate login - this would typically involve an API request
-  login: (email, password) => {
-    // Mock login: normally, this would send a request to the server
-    const user = { email, name: 'John Doe', token: 'fake-jwt-token' }; // Simulate a user object with a token
-    localStorage.setItem('user', JSON.stringify(user)); // Save user info and token to localStorage
-    return user;
-  },
-
-  // Log out by removing the user from localStorage
-  logout: () => {
-    localStorage.removeItem('user'); // Clear user data from localStorage
-  },
-
-  // Get the currently authenticated user from localStorage
+  
   getUser: () => {
-    return JSON.parse(localStorage.getItem('user')); // Parse the user data from localStorage
+    return JSON.parse(localStorage.getItem("user")); // Get user data
+  },
+  
+  login: async (email, password) => {
+    const response = await fetch(`${API_URL}/signin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem("user", JSON.stringify(data.user)); // Store user data
+      return data.user;
+    } else {
+      throw new Error("Login failed");
+    }
   },
 
-  // Get the user's authentication token (if you're using tokens for API requests)
-  getToken: () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user?.token || null; // Return the token if it exists, else return null
+  signup: async (name, email, password) => {
+    const response = await fetch(`${API_URL}/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem("user", JSON.stringify(data.user)); // Store user data
+      return data.user;
+    } else {
+      throw new Error("Sign Up failed");
+    }
+  },
+
+  logout: () => {
+    localStorage.removeItem("user"); // Remove user data from local storage
   },
 };
 

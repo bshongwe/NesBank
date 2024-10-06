@@ -1,19 +1,41 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.js
 
-# testing
+# Testing
 /coverage
 
-# next.js
+# Next.js
 /.next/
 /out/
+.next/
+out/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# production
-/build
+# Build output or production
+build/
+dist/
+
+# Firebase
+firebase-debug.log
+firestore-debug.log
+
+# Logs
+logs
+*.log
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*~
 
 # misc
 .DS_Store
@@ -33,9 +55,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# MacOS system files
-.DS_Store
-
-# Windows system files
-Thumbs.db

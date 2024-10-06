@@ -1,0 +1,21 @@
+/* 404.module.css */
+.container {
+  text-align: center;
+  padding: 100px;
+}
+
+.errorCode {
+  font-size: 100px;
+  color: red;
+}
+
+.errorMessage {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.homeLink {
+  font-size: 18px;
+  color: blue;
+  text-decoration: underline;
+}
