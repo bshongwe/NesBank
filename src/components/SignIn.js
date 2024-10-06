@@ -5,8 +5,8 @@ const SignIn = ({ onSignIn, onClose }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); // To handle errors
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
 
     try {
       const response = await fetch('/api/auth/signin', {
@@ -26,7 +26,7 @@ const SignIn = ({ onSignIn, onClose }) => {
         setError(errorData.message || "Failed to sign in");
       }
     } catch (err) {
-      console.error("An error occurred:", err);
+      // console.error("An error occurred:", err);
       setError("An unexpected error occurred");
     }
   };

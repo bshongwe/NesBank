@@ -1,6 +1,7 @@
 import { users, addUser, findUserByEmail } from '../../../../data'; // Simulate a database or import your database logic
+import bcrypt from 'bcrypt'; // Make sure bcrypt is imported
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { name, email, password } = req.body;
 
@@ -10,28 +11,22 @@ export default function handler(req, res) {
     }
 
     // Check if user already exists
-    const userExists = users.some((user) => user.email === email);
+    const userExists = findUserByEmail(email); // Use your function to check existence
     if (userExists) {
       return res.status(400).json({ message: "User already exists" });
     }
 
+    // Hash the password before storing it
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     // Create new user object
-    const newUser = { name, email, password }; // Note: In a real app, passwords should be hashed!
-    users.push(newUser); // Simulate adding the user to the database
+    const newUser = { name, email, password: hashedPassword }; // Store hashed password
+    addUser(newUser); // Simulate adding the user to the database
 
     // Respond with user data (omit password for security)
     const { password: _, ...userData } = newUser;
     return res.status(201).json({ user: userData });
-  }
-
-  // Check if user already exists
-    if (findUserByEmail(email)) {
-      return res.status(409).json({ message: 'User already exists' });
-    }
-
-    // Otherwise, add the user
-    addUser({ email, password }); // Hash the password before storing it
-    return res.status(201).json({ message: 'User created successfully' });
+    
   } else {
     res.setHeader('Allow', ['POST']);
     res.status(405).end(`Method ${req.method} Not Allowed`);

@@ -6,7 +6,7 @@ const SignUp = ({ onSignUp, onClose }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(""); // To handle errors
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     
@@ -33,7 +33,7 @@ const SignUp = ({ onSignUp, onClose }) => {
         setError(errorData.message || "Failed to create user");
       }
     } catch (err) {
-      console.error("An error occurred:", err);
+      // console.error("An error occurred:", err);
       setError("An unexpected error occurred");
     }
   };
