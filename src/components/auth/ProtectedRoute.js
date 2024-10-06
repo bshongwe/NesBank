@@ -1,15 +1,18 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import authService from '../../services/authService'; // Service to check if user is authenticated
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import authService from '../../services/authService'; // Adjust the path as needed
 
 const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = authService.isAuthenticated(); // Check if user is logged in
+  const router = useRouter();
+  const isAuthenticated = authService.isAuthenticated(); // Your logic to check if the user is authenticated
 
-  if (!isAuthenticated) {
-    return <Navigate to="/signin" replace />;
-  }
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/signin'); // Redirect to sign-in page if not authenticated
+    }
+  }, [isAuthenticated, router]);
 
-  return children; // If authenticated, render the protected content (dashboard)
+  return isAuthenticated ? children : null; // Render children only if authenticated
 };
 
 export default ProtectedRoute;
