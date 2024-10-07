@@ -139,18 +139,18 @@ function InviteScreen({ custom, animated = false }) {
   return (
     <AppScreen className="w-full">
       <MotionAppScreenHeader {...(animated ? headerAnimation : {})}>
-        <AppScreen.Title>Invite people</AppScreen.Title>
+        <AppScreen.Title>Bank Transfer</AppScreen.Title>
         <AppScreen.Subtitle>
-          Get tips <span className="text-white">5s sooner</span> for every
-          invite.
+          Swift transfer: <span className="text-white">ZAR-xxx-xxx-xxx</span> for customer
+          number:
         </AppScreen.Subtitle>
       </MotionAppScreenHeader>
       <MotionAppScreenBody {...(animated ? { ...bodyAnimation, custom } : {})}>
         <div className="px-4 py-6">
           <div className="space-y-6">
             {[
-              { label: "Full name", value: "Albert H. Wiggin" },
-              { label: "Email address", value: "awiggin@chase.com" },
+              { label: "Full name", value: "Nelson R. Mandela" },
+              { label: "Email address", value: "rsa-president@govt.co.za" },
             ].map((field) => (
               <div key={field.label}>
                 <div className="text-sm text-gray-500">{field.label}</div>
@@ -161,7 +161,7 @@ function InviteScreen({ custom, animated = false }) {
             ))}
           </div>
           <div className="mt-6 rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white">
-            Invite person
+            Transfer Funds
           </div>
         </div>
       </MotionAppScreenBody>
@@ -323,23 +323,23 @@ function InvestScreen({ custom, animated = false }) {
 
 export const features = [
   {
-    name: "Invite friends for better returns",
+    name: "Ease in making Swift Payments",
     description:
-      "For every friend you invite to NesBank, you get insider notifications 5 seconds sooner. And it is 10 seconds if you invite an insider.",
+      "At NesBank, we pride ourselves in service delivery, ensuring quick and secure payments for our clients.",
     icon: DeviceUserIcon,
     screen: InviteScreen,
   },
   {
-    name: "Notifications on stock dips",
+    name: "Notifications on Market Flactuations and Stock Dips",
     description:
-      "Get a push notification every time we find out something that is going to lower the share price on your holdings so you can sell before the information hits the public markets.",
+      "Get push notifications every time public markets experience significant changes, ensuring that you make informed decisions with regards to your investments.",
     icon: DeviceNotificationIcon,
     screen: StocksScreen,
   },
   {
-    name: "Invest what you want",
+    name: "Choose You Investment Plan.",
     description:
-      "We hide your stock purchases behind thousands of anonymous trading accounts, so suspicious activity can never be traced back to you.",
+      "We offer various investment products that our clients may choose from at their prefer rate of investment. In addition, an investment guie is assigned to ensure that you monitor, analyse and make informed investment decisions so as to minimise risks.",
     icon: DeviceTouchIcon,
     screen: InvestScreen,
   },
