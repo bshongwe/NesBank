@@ -221,3 +221,107 @@ This table provides a detailed overview of your API endpoints and their function
 
 This version with emojis makes the API documentation more engaging and easy to navigate!
 
+Here's how we can generate GitHub issues based on your project's outlined features and tasks, and denote completed tasks in the `README.md` with a green checkmark (✅) and outstanding ones with a red cross (❌). This structure will provide a clear guide for contributors on the current state of the project and the remaining work to be done.
+
+---
+
+## 🛠️ **Project Features & Status**
+
+### 1. **Frontend: React & Next.js** ⚛️
+
+| Feature                                        | Status    |
+|------------------------------------------------|-----------|
+| **React & Next.js setup**                      | ✅ Completed |
+| **Tailwind CSS integration**                   | ✅ Completed |
+| **Responsive user interface (UI)**             | ✅ Completed |
+
+### 2. **Backend: Node.js & Express** 🛠️
+
+| Feature                                        | Status    |
+|------------------------------------------------|-----------|
+| **Node.js & Express setup**                    | ❌ Outstanding |
+| **RESTful API for user authentication**        | Ongoing |
+| **Investment transactions API**                | ❌ Outstanding |
+| **Chatbot API integration**                    | Ongoing (using a prototype) |
+
+### 3. **Database: MongoDB** 🗃️
+
+| Feature                                        | Status    |
+|------------------------------------------------|-----------|
+| **MongoDB integration**                        | ✅ Completed |
+| **Store user data (authentication)**           | Ongoing |
+| **Investment portfolio data**                  | ❌ Outstanding |
+| **Transaction history records**                | ❌ Outstanding |
+
+### 4. **Authentication: JWT & AuthService** 🔑
+
+| Feature                                        | Status    |
+|------------------------------------------------|-----------|
+| **JWT implementation for user sessions**       | Ongoing |
+| **AuthService login & signup functionality**   | ✅ Completed |
+| **Password recovery mechanism**                | Ongoing |
+
+### 5. **Investment Features** 📈
+
+| Feature                                        | Status    |
+|------------------------------------------------|-----------|
+| **Investment portfolio management**            | ❌ Outstanding |
+| **Transaction history records**                | ❌ Outstanding |
+| **Performance analytics & charts**             | ❌ Outstanding |
+
+### 6. **Chatbot: GetAdviceModal** 🤖
+
+| Feature                                        | Status    |
+|------------------------------------------------|-----------|
+| **AI-powered investment advice chatbot**       | Ongoing |
+
+### 7. **Payment Integration: Stripe & PayPal** 💳
+
+| Feature                                        | Status    |
+|------------------------------------------------|-----------|
+| **Stripe payment gateway integration**         | ❌ Outstanding |
+| **PayPal payment gateway integration**         | ❌ Outstanding |
+
+### 8. **Containerization: Docker** 🐳
+
+| Feature                                        | Status    |
+|------------------------------------------------|-----------|
+| **Docker containerization for the project**    | ❌ Outstanding |
+
+### 9. **Deployment: Vercel & GCP** 🚀
+
+| Feature                                        | Status    |
+|------------------------------------------------|-----------|
+| **Vercel frontend deployment**                 | ❌ Outstanding |
+| **Google Cloud Platform (GCP) for backend**    | ❌ Outstanding |
+
+---
+
+### GitHub Issues Example
+
+For contributors to join the project and work on outstanding features, here are examples of potential GitHub issues you can create:
+
+1. **Responsive UI Implementation**  
+   *Description*: Implement a responsive UI for the platform using Tailwind CSS, ensuring that it works across all devices and screen sizes.  
+   *Feature*: Frontend  
+   *Status*: ✅ Completed
+
+2. **Investment Transactions API**  
+   *Description*: Develop and integrate a RESTful API to handle investment transactions (buy/sell) for users.  
+   *Feature*: Backend  
+   *Status*: Ongoing
+
+3. **Investment Portfolio Management**  
+   *Description*: Build the user interface and backend API logic for users to view, add, and track their investments in various asset classes.  
+   *Feature*: Investment Features  
+   *Status*: Ongoing
+
+4. **AI-Powered Chatbot**  
+   *Description*: Integrate an AI-powered chatbot to offer personalized investment advice.  
+   *Feature*: Chatbot  
+   *Status*: Ongoing
+
+By clearly outlining these tasks in the project README, and associating them with relevant GitHub issues, contributors can easily understand which features need attention and how they can help!
+
+Let me know if you need help with the GitHub issues or anything else!
+
