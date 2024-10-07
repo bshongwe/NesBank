@@ -4,9 +4,16 @@ import authService from "../../services/authService"; // Adjust the path based o
 
 const GetStartedModal = ({ isOpen, onClose }) => {
   const [isSignIn, setIsSignIn] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
+  
+  // Separate states for sign-in form
+  const [signInEmail, setSignInEmail] = useState("");
+  const [signInPassword, setSignInPassword] = useState("");
+  
+  // Separate states for sign-up form
+  const [signUpEmail, setSignUpEmail] = useState("");
+  const [signUpPassword, setSignUpPassword] = useState("");
+  const [signUpFullName, setSignUpFullName] = useState("");
+  
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(""); // Error state
 
@@ -23,9 +30,12 @@ const GetStartedModal = ({ isOpen, onClose }) => {
   };
 
   const resetForm = () => {
-    setEmail("");
-    setPassword("");
-    setFullName("");
+    // Reset both sign-in and sign-up fields when the form is closed
+    setSignInEmail("");
+    setSignInPassword("");
+    setSignUpEmail("");
+    setSignUpPassword("");
+    setSignUpFullName("");
     setError("");
   };
 
@@ -36,12 +46,12 @@ const GetStartedModal = ({ isOpen, onClose }) => {
 
     try {
       if (isSignIn) {
-        // Call the sign-in method from authService
-        await authService.login(email, password);
+        // Call the sign-in method from authService using sign-in fields
+        await authService.login(signInEmail, signInPassword);
         toast.success("Successfully signed in!"); // Show success notification
       } else {
-        // Call the sign-up method from authService
-        await authService.signUp(fullName, email, password);
+        // Call the sign-up method from authService using sign-up fields
+        await authService.signUp(signUpFullName, signUpEmail, signUpPassword);
         toast.success("Successfully signed up!"); // Show success notification
       }
       onClose(); // Close modal on successful authentication
@@ -72,32 +82,55 @@ const GetStartedModal = ({ isOpen, onClose }) => {
         <h2 className="text-2xl mb-4">{isSignIn ? "Sign In" : "Sign Up"}</h2>
         {error && <p className="text-red-500 text-sm" aria-live="assertive">{error}</p>}
         <form onSubmit={handleSubmit}>
-          {!isSignIn && (
-            <input
-              type="text"
-              placeholder="Full Name"
-              className="mb-3 w-full p-2 border rounded"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              required
-            />
+          {isSignIn ? (
+            // Sign-in form fields
+            <>
+              <input
+                type="email"
+                placeholder="Email"
+                className="mb-3 w-full p-2 border rounded"
+                value={signInEmail}
+                onChange={(e) => setSignInEmail(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="mb-3 w-full p-2 border rounded"
+                value={signInPassword}
+                onChange={(e) => setSignInPassword(e.target.value)}
+                required
+              />
+            </>
+          ) : (
+            // Sign-up form fields
+            <>
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="mb-3 w-full p-2 border rounded"
+                value={signUpFullName}
+                onChange={(e) => setSignUpFullName(e.target.value)}
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="mb-3 w-full p-2 border rounded"
+                value={signUpEmail}
+                onChange={(e) => setSignUpEmail(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="mb-3 w-full p-2 border rounded"
+                value={signUpPassword}
+                onChange={(e) => setSignUpPassword(e.target.value)}
+                required
+              />
+            </>
           )}
-          <input
-            type="email"
-            placeholder="Email"
-            className="mb-3 w-full p-2 border rounded"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="mb-3 w-full p-2 border rounded"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
           <button
             type="submit"
             className="w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-200"
