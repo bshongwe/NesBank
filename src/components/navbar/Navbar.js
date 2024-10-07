@@ -1,27 +1,28 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import Link from 'next/link'; // Import Next.js Link component
+import { useRouter } from 'next/router'; // Import useRouter hook
 import authService from '../../services/authService'; // Import the authentication service
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const router = useRouter(); // Use useRouter for programmatic navigation
   const isAuthenticated = authService.isAuthenticated(); // Check if the user is logged in
   const user = authService.getUser(); // Get the user details (if logged in)
 
   // Function to handle user logout
   const handleLogout = () => {
     authService.logout(); // Clear user session
-    navigate('/signin'); // Redirect to the Sign In page after logout
+    router.push('/signin'); // Redirect to the Sign In page after logout
   };
 
   return (
     <nav className="navbar">
-      <Link to="/" className="navbar-brand">NesBank</Link>
+      <Link href="/" className="navbar-brand">NesBank</Link>
       <ul className="navbar-links">
         {isAuthenticated ? ( // Check if the user is authenticated
           <>
             {/* Show the dashboard link */}
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link href="/dashboard">Dashboard</Link>
             </li>
             
             {/* Display user profile name with a dropdown for profile and logout */}
@@ -29,7 +30,7 @@ const Navbar = () => {
               <span className="profile-name">{user.name}</span> {/* Display user's name */}
               <ul className="profile-dropdown">
                 <li>
-                  <Link to="/profile">Profile</Link> {/* Profile link */}
+                  <Link href="/profile">Profile</Link> {/* Profile link */}
                 </li>
                 <li>
                   <button onClick={handleLogout} className="logout-button">Logout</button> {/* Logout button */}
@@ -40,8 +41,8 @@ const Navbar = () => {
         ) : (
           <>
             {/* If not authenticated, show Sign In and Sign Up links */}
-            <li><Link to="/signin">Sign In</Link></li>
-            <li><Link to="/signup">Sign Up</Link></li>
+            <li><Link href="/signin">Sign In</Link></li>
+            <li><Link href="/signup">Sign Up</Link></li>
           </>
         )}
       </ul>
