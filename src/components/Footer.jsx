@@ -14,7 +14,7 @@ const Footer = () => {
     // You can add your logic to send the email to the newsletter API here
 
     // Show a success toast notification
-    toast.success("Successfully joined the newsletter!", {
+    toast.success("Successfully joined NesBank newsletter!", {
       position: "bottom-right",
     });
   };
