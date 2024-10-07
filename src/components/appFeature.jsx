@@ -219,7 +219,7 @@ const AppFeature = () => {
             </div>
             {/*  */}
             <div className="mt-4 rounded-lg bg-blue-500 px-4 py-2 text-center text-sm font-semibold text-white">
-              Trade
+              Invest
             </div>
             {/*  */}
             <div className="mt-3 divide-y divide-gray-100 text-sm">

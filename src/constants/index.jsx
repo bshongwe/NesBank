@@ -28,7 +28,7 @@ export const accountData = [
     icon: DeviceCardsIcon,
   },
   {
-    name: "Trade in real-time",
+    name: "Invest in real-time",
     description:
       "Get insider tips on big stock moves and act on them within seconds.",
     icon: DeviceClockIcon,
