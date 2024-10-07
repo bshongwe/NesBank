@@ -10,7 +10,6 @@ import { IoIosArrowUp } from "react-icons/io";
 import { navData } from "@/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import GetStartedModal from "./GetStartedModal/GetStartedModal";
 import GetAdviceModal from "./GetAdviceModal/GetAdviceModal";
 import authService from "@/services/authService";  // Import authService for authentication handling
 
@@ -174,12 +173,6 @@ const Header = () => {
           </div>
         </Container>
       </nav>
-
-      {/* Get Started Modal */}
-      <GetStartedModal
-        isOpen={isGetStartedOpen}
-        onClose={() => setIsGetStartedOpen(false)}
-      />
 
       {/* Get Advice Modal */}
       <GetAdviceModal

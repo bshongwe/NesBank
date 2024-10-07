@@ -1,31 +1,45 @@
+import axios from 'axios';
+
+// Get the API URL from the environment variable
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api/auth'; // Fallback to default if not set
+
+// Create an axios instance
+const axiosInstance = axios.create({
+  baseURL: API_URL,
+});
+
+// Add a request interceptor to include the JWT token in the headers
+axiosInstance.interceptors.request.use((config) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (user && user.token) {
+    config.headers['Authorization'] = `Bearer ${user.token}`; // Attach token to headers
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
+
 const authService = {
-  // Check if the user is authenticated by verifying the presence of user data in localStorage
-  isAuthenticated: () => {
-    return !!localStorage.getItem('user'); // Check if user info exists in localStorage
+  login: async (email, password) => {
+    const response = await axiosInstance.post('/login', { email, password });
+    if (response.data.token) {
+      localStorage.setItem('user', JSON.stringify(response.data)); // Save user data to local storage
+    }
+    return response.data;
   },
 
-  // Simulate login - this would typically involve an API request
-  login: (email, password) => {
-    // Mock login: normally, this would send a request to the server
-    const user = { email, name: 'John Doe', token: 'fake-jwt-token' }; // Simulate a user object with a token
-    localStorage.setItem('user', JSON.stringify(user)); // Save user info and token to localStorage
-    return user;
+  signUp: async (email, password) => {
+    const response = await axiosInstance.post('/signup', { email, password });
+    return response.data; // Return the response (you can customize this based on your API)
   },
 
-  // Log out by removing the user from localStorage
   logout: () => {
-    localStorage.removeItem('user'); // Clear user data from localStorage
+    localStorage.removeItem('user'); // Clear user data from local storage
   },
 
-  // Get the currently authenticated user from localStorage
-  getUser: () => {
-    return JSON.parse(localStorage.getItem('user')); // Parse the user data from localStorage
-  },
-
-  // Get the user's authentication token (if you're using tokens for API requests)
-  getToken: () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user?.token || null; // Return the token if it exists, else return null
+  isAuthenticated: () => {
+    const user = localStorage.getItem('user');
+    return user !== null; // Check if user data is in local storage
   },
 };
 
