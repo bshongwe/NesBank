@@ -9,28 +9,42 @@ const axiosInstance = axios.create({
 });
 
 // Add a request interceptor to include the JWT token in the headers
-axiosInstance.interceptors.request.use((config) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (user && user.token) {
-    config.headers['Authorization'] = `Bearer ${user.token}`; // Attach token to headers
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.token) {
+      config.headers['Authorization'] = `Bearer ${user.token}`; // Attach token to headers
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-  return config;
-}, (error) => {
-  return Promise.reject(error);
-});
+);
 
 const authService = {
   login: async (email, password) => {
-    const response = await axiosInstance.post('/login', { email, password });
-    if (response.data.token) {
-      localStorage.setItem('user', JSON.stringify(response.data)); // Save user data to local storage
+    try {
+      const response = await axiosInstance.post('/login', { email, password });
+      if (response.data.token) {
+        localStorage.setItem('user', JSON.stringify(response.data)); // Save user data to local storage
+      }
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response?.data?.message || 'Login failed. Please try again.'); // Custom error message
     }
-    return response.data;
   },
 
-  signUp: async (email, password) => {
-    const response = await axiosInstance.post('/signup', { email, password });
-    return response.data; // Return the response (you can customize this based on your API)
+  signUp: async (fullName, email, password) => {
+    try {
+      const response = await axiosInstance.post('/signup', { fullName, email, password });
+      if (response.data.token) {
+        localStorage.setItem('user', JSON.stringify(response.data)); // Save user data to local storage
+      }
+      return response.data; // Return the response (you can customize this based on your API)
+    } catch (error) {
+      throw new Error(error.response?.data?.message || 'Sign up failed. Please try again.'); // Custom error message
+    }
   },
 
   logout: () => {
@@ -43,4 +57,5 @@ const authService = {
   },
 };
 
+export { axiosInstance }; // Exporting axios instance for reuse if needed
 export default authService;

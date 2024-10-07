@@ -11,6 +11,7 @@ import { navData } from "@/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import GetAdviceModal from "./GetAdviceModal/GetAdviceModal";
+import GetStartedModal from "./GetStartedModal/GetStartedModal";
 import authService from "@/services/authService";  // Import authService for authentication handling
 
 const MobileNavLink = ({ children, ...props }) => {
@@ -178,6 +179,12 @@ const Header = () => {
       <GetAdviceModal
         isOpen={isGetAdviceOpen}
         onClose={() => setIsGetAdviceOpen(false)}
+      />
+
+      {/* Get Started Modal */}
+      <GetStartedModal
+        isOpen={isGetStartedOpen}  // Opened via "Get Started" button
+        onClose={() => setIsGetStartedOpen(false)}
       />
     </header>
   );
