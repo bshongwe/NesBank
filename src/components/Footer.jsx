@@ -15,7 +15,7 @@ const Footer = () => {
 
     // Show a success toast notification
     toast.success("Successfully joined the newsletter!", {
-      position: toast.POSITION.TOP_CENTER,
+      position: "bottom-right",
     });
   };
 
