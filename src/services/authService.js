@@ -25,7 +25,7 @@ axiosInstance.interceptors.request.use(
 const authService = {
   login: async (email, password) => {
     try {
-      const response = await axiosInstance.post('/signin', { email, password });
+      const response = await axiosInstance.post('/login', { email, password });
       if (response.data.token) {
         localStorage.setItem('user', JSON.stringify(response.data)); // Save user data to local storage
       }

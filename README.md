@@ -162,5 +162,62 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) files
 
 ## 🙏 **Acknowledgments**
 
-Kudo to **NesBank** contributors and investors. Special appreciation to the developers of React, Next.js and MongoDB for their amazing tools and frameworks that made this project possible.
+Kudos to **NesBank** contributors and investors. Special appreciation to the developers of React, Next.js and MongoDB for their amazing tools and frameworks that made this project possible.
+
+---
+
+Here's the API documentation table with relevant emojis added for better readability:
+
+---
+
+## API Documentation 🚀
+
+This table outlines the available API endpoints, methods, required request bodies, and expected responses for authentication and user management in this application.
+
+| **Endpoint**        | **Method** | **Description**                                             | **Request Body**                                                                                                                                                                           | **Response (Success)**                                                                                                                                                                                                                                                                                                              | **Response (Error)**                                                                                                                                                                                |
+|---------------------|------------|-------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/api/auth/signup`   | `POST`     | 📝 Registers a new user                                         | ```json { "fullName": "John Doe", "email": "johndoe@example.com", "password": "securepassword" } ```                                                                                         | ```json { "id": "64a8b4d...", "fullName": "John Doe", "email": "johndoe@example.com", "token": "jwt.token.here" } ```                                                                                                                                                                                                               | ```json { "message": "Email already exists" } ``` <br/> ⚠️ HTTP Status: `400 Bad Request`                                                                                                                      |
+| `/api/auth/login`    | `POST`     | 🔑 Logs in an existing user                                     | ```json { "email": "johndoe@example.com", "password": "securepassword" } ```                                                                                                                 | ```json { "id": "64a8b4d...", "fullName": "John Doe", "email": "johndoe@example.com", "token": "jwt.token.here" } ```                                                                                                                                                                                                               | ```json { "message": "Invalid email or password" } ``` <br/> ⚠️ HTTP Status: `401 Unauthorized`                                                                                                                |
+| `/api/auth/logout`   | `POST`     | 🚪 Logs out the current user                                    | N/A                                                                                                                                                                                         | ✅ No response. User session cleared. Local storage should also be cleared client-side.                                                                                                                                                                                                                                                | N/A                                                                                                                                                                                                  |
+| `/api/auth/profile`  | `GET`      | 👤 Retrieves the logged-in user's profile                       | N/A                                                                                                                                                                                         | ```json { "id": "64a8b4d...", "fullName": "John Doe", "email": "johndoe@example.com", "createdAt": "2024-01-01T12:34:56Z" } ```                                                                                                                                                                                                     | ```json { "message": "Unauthorized access" } ``` <br/> ⚠️ HTTP Status: `401 Unauthorized`                                                                                                                      |
+| `/api/auth/refresh`  | `POST`     | 🔄 Refreshes the JWT token                                      | ```json { "token": "expired.jwt.token" } ```                                                                                                                                                | ```json { "token": "new.jwt.token.here" } ```                                                                                                                                                                                                                                                                                      | ```json { "message": "Token is invalid or expired" } ``` <br/> ⚠️ HTTP Status: `401 Unauthorized`                                                                                                              |
+
+---
+
+### Error Response Format ⚠️
+
+All error responses follow this structure:
+
+```json
+{
+  "message": "Error message"
+}
+```
+
+---
+
+### Notes 📝
+
+- **🔐 Authentication**: For protected routes (e.g., `/api/auth/profile`), the `Authorization` header must be included in the request with a valid JWT token:
+
+  ```
+  Authorization: Bearer {token}
+  ```
+
+- **🛠️ Response Codes**: 
+  - `200 OK` for successful requests.
+  - `400 Bad Request` for invalid inputs.
+  - `401 Unauthorized` for authentication failures (e.g., invalid or expired tokens).
+  
+- **🔑 Token Handling**: The JWT token must be stored client-side (e.g., localStorage or cookies) after successful login or signup to authorize future requests. 
+
+- **🛑 Session Management**: Use the `/logout` route to terminate the session and clear stored tokens client-side.
+
+---
+
+This table provides a detailed overview of your API endpoints and their functionality. Expand it as the application grows to cover additional features.
+
+---
+
+This version with emojis makes the API documentation more engaging and easy to navigate!
 

@@ -13,7 +13,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<h1>Home Page</h1>} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/login" element={<SignIn />} />
         {/* Protecting the dashboard route */}
         <Route
           path="/dashboard"
