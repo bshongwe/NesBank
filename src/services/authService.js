@@ -31,7 +31,9 @@ const authService = {
       }
       return response.data;
     } catch (error) {
-      throw new Error(error.response?.data?.message || 'Login failed. Please try again.'); // Custom error message
+      const message = error.response?.data?.message || 'Login failed. Please try again.';
+      console.error(message); // Log the error message for debugging
+      throw new Error(message); // Custom error message
     }
   },
 
@@ -41,9 +43,11 @@ const authService = {
       if (response.data.token) {
         localStorage.setItem('user', JSON.stringify(response.data)); // Save user data to local storage
       }
-      return response.data; // Return the response (you can customize this based on your API)
+      return response.data; // Return the response
     } catch (error) {
-      throw new Error(error.response?.data?.message || 'Sign up failed. Please try again.'); // Custom error message
+      const message = error.response?.data?.message || 'Sign up failed. Please try again.';
+      console.error(message); // Log the error message for debugging
+      throw new Error(message); // Custom error message
     }
   },
 
@@ -54,6 +58,10 @@ const authService = {
   isAuthenticated: () => {
     const user = localStorage.getItem('user');
     return user !== null; // Check if user data is in local storage
+  },
+
+  getUser: () => {
+    return JSON.parse(localStorage.getItem('user')); // Return parsed user data
   },
 };
 

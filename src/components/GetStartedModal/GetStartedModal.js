@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
 import authService from "../../services/authService"; // Adjust the path based on your folder structure
 
 const GetStartedModal = ({ isOpen, onClose }) => {
@@ -37,13 +38,17 @@ const GetStartedModal = ({ isOpen, onClose }) => {
       if (isSignIn) {
         // Call the sign-in method from authService
         await authService.login(email, password);
+        toast.success("Successfully signed in!"); // Show success notification
       } else {
         // Call the sign-up method from authService
         await authService.signUp(fullName, email, password);
+        toast.success("Successfully signed up!"); // Show success notification
       }
       onClose(); // Close modal on successful authentication
+      resetForm(); // Reset form fields
     } catch (err) {
       setError(err.message || "Authentication failed. Please try again."); // Display error message
+      toast.error(err.message || "Authentication failed. Please try again."); // Show error notification
     } finally {
       setLoading(false);
     }
@@ -65,7 +70,7 @@ const GetStartedModal = ({ isOpen, onClose }) => {
           &times;
         </button>
         <h2 className="text-2xl mb-4">{isSignIn ? "Sign In" : "Sign Up"}</h2>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="text-red-500 text-sm" aria-live="assertive">{error}</p>}
         <form onSubmit={handleSubmit}>
           {!isSignIn && (
             <input
@@ -95,7 +100,7 @@ const GetStartedModal = ({ isOpen, onClose }) => {
           />
           <button
             type="submit"
-            className="w-full p-2 bg-blue-600 text-white rounded"
+            className="w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-200"
             disabled={loading} // Disable button while loading
           >
             {loading ? (isSignIn ? "Signing In..." : "Signing Up...") : (isSignIn ? "Sign In" : "Sign Up")}
