@@ -224,16 +224,16 @@ const AppFeature = () => {
             {/*  */}
             <div className="mt-3 divide-y divide-gray-100 text-sm">
               <div className="flex justify-between py-1">
-                <div className="text-gray-500">Open</div>
-                <div className="font-medium text-gray-900">6,387.55</div>
+                <div className="text-gray-500">Acc. Balance</div>
+                <div className="font-medium text-gray-900">60,387.55</div>
               </div>
               <div className="flex justify-between py-1">
-                <div className="text-gray-500">Closed</div>
+                <div className="text-gray-500">Avail. Balance</div>
                 <div className="font-medium text-gray-900">6,487.09</div>
               </div>
               <div className="flex justify-between py-1">
-                <div className="text-gray-500">Low</div>
-                <div className="font-medium text-gray-900">6,322.01</div>
+                <div className="text-gray-500">Return</div>
+                <div className="font-medium text-gray-900">3,235.02</div>
               </div>
             </div>
           </div>
