@@ -4,7 +4,7 @@ import Cors from 'cors'; // for middleware
 // Initialize the cors middleware
 const cors = Cors({
   methods: ['POST', 'OPTIONS'],
-  origin: '*', // Adjust the origin as needed
+  origin: 'http://localhost:3000', // Adjusted origin to match frontend domain
 });
 
 // Helper method to wait for a middleware to execute before continuing
