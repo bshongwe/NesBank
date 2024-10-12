@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignIn from './components/auth/SignIn';
-import Dashboard from './Dashboard';
+import UserDashboard from './components/dashboard/UserDashboard'; // Updated import path
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Navbar from './components/navbar/Navbar';
@@ -24,7 +24,7 @@ const App = () => {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <UserDashboard />
             </ProtectedRoute>
           }
         />
