@@ -37,6 +37,10 @@ const authService = {
   },
 
   signUp: async (fullName, email, password) => {
+    // Input validation
+    if (!fullName || !email || !password) {
+      throw new Error('All fields are required');
+    }
     try {
       const response = await axiosInstance.post('/signup', { fullName, email, password });
       if (response.data.token) {
