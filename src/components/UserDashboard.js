@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from './navbar/Navbar'; // Inherits the existing navbar
-// import './dashboard.css'; // Optional styling
+import Navbar from '../navbar/Navbar'; // Inherits the existing navbar
 import { useRouter } from 'next/router'; // Import Next.js router for navigation
-import authService from '../services/authService'; // Import your authService
+import authService from '../../services/authService'; // Import your authService
 
-const Dashboard = () => {
+const UserDashboard = () => {
   const [user, setUser] = useState(null);
   const router = useRouter(); // Initialize the router
 
@@ -38,15 +37,13 @@ const Dashboard = () => {
       <div className="dashboard-content">
         <h1>Welcome to your Dashboard, {user.name}!</h1>
         <div className="dashboard-buttons">
-          {/* Add buttons for wallet options */}
           <button onClick={() => router.push('/wallet')}>Wallet Options</button>
           <button onClick={() => router.push('/profile-settings')}>Profile Settings</button>
           <button onClick={() => authService.logout()}>Logout</button>
         </div>
-        {/* Rest of the dashboard content */}
       </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default UserDashboard;
