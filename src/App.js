@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignIn from './components/auth/SignIn';
 import Dashboard from './Dashboard';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Navbar from './components/navbar/Navbar';
+import GetStartedModal from './components/GetStartedModal/GetStartedModal';
 import authService from './services/authService'; // For authentication checks
 
 const App = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
   return (
     <Router>
       <Navbar />
+      <button onClick={() => setModalOpen(true)}>Get Started</button> {/* Add a button to open the modal */}
+      <GetStartedModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} /> {/* Include the modal */}
       <Routes>
         <Route path="/" element={<h1>Home Page</h1>} />
         <Route path="/login" element={<SignIn />} />
