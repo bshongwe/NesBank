@@ -31,9 +31,8 @@ const authService = {
       }
       return response.data;
     } catch (error) {
-      const message = error.response?.data?.message || 'Login failed. Please try again.';
-      console.error(message); // Log the error message for debugging
-      throw new Error(message); // Custom error message
+      console.error('Error during authentication'); // Generic error message for logs
+      throw new Error('Login failed. Please try again.'); // Custom error message
     }
   },
 
@@ -45,9 +44,8 @@ const authService = {
       }
       return response.data; // Return the response
     } catch (error) {
-      const message = error.response?.data?.message || 'Sign up failed. Please try again.';
-      console.error(message); // Log the error message for debugging
-      throw new Error(message); // Custom error message
+      console.error('Error during authentication'); // Generic error message for logs
+      throw new Error('Sign up failed. Please try again.'); // Custom error message
     }
   },
 
