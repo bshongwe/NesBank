@@ -46,10 +46,12 @@ const GetStartedModal = ({ isOpen, onClose }) => {
 
     try {
       if (isSignIn) {
+        console.log("Attempting to sign in with", signInEmail, signInPassword);
         // Call the sign-in method from authService using sign-in fields
         await authService.login(signInEmail, signInPassword);
         toast.success("NesBank user successfully signed in!"); // Show success notification
       } else {
+        console.log("Attempting to sign up with", signUpFullName, signUpEmail, signUpPassword);
         // Call the sign-up method from authService using sign-up fields
         await authService.signUp(signUpFullName, signUpEmail, signUpPassword);
         toast.success("NesBank user successfully signed up!"); // Show success notification
@@ -57,6 +59,7 @@ const GetStartedModal = ({ isOpen, onClose }) => {
       onClose(); // Close modal on successful authentication
       resetForm(); // Reset form fields
     } catch (err) {
+      console.error("Authentication error:", err);
       setError(err.message || "NesBank authentication failed. Please try again."); // Display error message
       toast.error(err.message || "NesBank authentication failed. Please try again."); // Show error notification
     } finally {
