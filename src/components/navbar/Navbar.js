@@ -14,6 +14,12 @@ const Navbar = () => {
     router.push('/signin'); // Redirect to the Sign In page after logout
   };
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/signin'); // Redirect unauthorized users to sign-in page
+    }
+  }, [isAuthenticated, router]);
+
   return (
     <nav className="navbar">
       <Link href="/" className="navbar-brand">NesBank</Link>
