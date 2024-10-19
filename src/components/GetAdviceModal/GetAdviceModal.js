@@ -11,44 +11,66 @@ const GetAdviceModal = ({ isOpen, onClose }) => {
   // Predefined responses for the chatbot
   const responses = {
     // greetings
-    "hello": "Hi! How can I assist you today?",
-    "how are you?": "I'm just a bot, but I'm here to help!",
-    "bye": "Goodbye! Have a great day!",
-    "good morning": "Good morning! What can I help you with today?",
-    "good evening": "Good evening! How can I assist you tonight?",
+    "hello": "Hi. Thank you for choosing NesBank. How can I assist you today?",
+    "hi": "Hello. Thank you for choosing NesBank. How can I assist you today?",
+    "how are you?": "I'm just a bot, but I'm here to help. Thank you for choosing NesBank.",
+    "bye": "Goodbye! Have a great day. Thank you for choosing NesBank.",
+    "goodbye": "Goodbye! Have a great day. Thank you for choosing NesBank.",
+    "i'll be back": "Awesome! See you again soon. Have a great day. Thank you for choosing NesBank.",
+    "yes": "Great. Awesome! Thank you for your response. Contact a NesBank agent for further assistance.",
+    "no": "Aww... sorry about that. Thank you for your response. Contact a NesBank agent for further assistance.",
+    "maybe": "Aww... sorry about that. Thank you for your response. Contact a NesBank agent for further assistance.",
+    "kind of": "Aww... sorry about that. Thank you for your response. Contact a NesBank agent for further assistance.",
+    "have a great day": "Thanks! Likewise. Thank you for choosing NesBank.",
+    "good morning": "Good morning. Thank you for choosing NesBank. How can I assist today?",
+    "good day": "Good day. Thank you for choosing NesBank. How can I assist today?",
+    "good afternoon": "Good afternoon. Thank you for choosing NesBank. How can I assist today?",
+    "good evening": "Good evening. Thank you for choosing NesBank. How can I assist today?",
     // general_inquiries
     "what is your name?": "My name is NesBot, here to help you navigate the NesBank app. How can I assist you today?",
-    "help": "What would you like help with? I'm here to provide advice.",
+    "hi. what is your name?": "My name is NesBot, here to help you navigate the NesBank app. How can I assist you today?",
+    "hello. what is your name?": "My name is NesBot, here to help you navigate the NesBank app. How can I assist you today?",
+    "good day. what is your name?": "My name is NesBot, here to help you navigate the NesBank app. How can I assist you today?",
+    "good afternoon. what is your name?": "My name is NesBot, here to help you navigate the NesBank app. How can I assist you today?",
+    "good morning. what is your name?": "My name is NesBot, here to help you navigate the NesBank app. How can I assist you today?",
+    "good evening. what is your name?": "My name is NesBot, here to help you navigate the NesBank app. How can I assist you today?",
+    "help": "How can I assist? I'm here to provide advice.",
+    "I need your help": "How can I assist? I'm here to provide advice.",
+    "I need help": "How can I assist? I'm here to provide advice.",
+    // customer_relations_&_ratings
+    "I am not happy with your service": "Aww... we are sorry to hear that. Please contact a NesBank agent and log your complaint. We, at NesBank, are determined to provide quality services. Thus, if a customer is unhappy, we are determined to correct that undesired experience.",
+    "I am concerned about scams": "Kindly verify our services and authenticity with the relevant bodies in the Republic of south Africa concerning NesBank. We believe in operating in transparency. Please further contact a NesBank agent and log your concern. We, at NesBank, are determined to provide quality services. Thus, if a customer is unhappy, we are determined to correct that undesired experience.",
+    "I am happy with your service": "Yipee!!! We are happy to hear that. Thank you for choosing NesBank.",
     // investment_basics
-    "what is currency trading?": "Currency trading, or forex trading, involves buying and selling currencies to make a profit. Would you like to know more about how it works?",
-    "how can I invest in currencies?": "You can invest in currencies through our trading platform. Do you want guidance on setting up your account?",
-    "what are the current exchange rates?": "I can help you check the current exchange rates. Please specify which currencies you're interested in.",
-    "what is the minimum deposit for trading?": "The minimum deposit for trading is usually $100. Would you like to know more about trading options?",
-    "what are the risks of currency trading?": "Currency trading can be risky due to market volatility. It's important to do your research and invest wisely.",
-    "can I set up alerts for exchange rates?": "Yes, you can set up alerts in your account settings to notify you of changes in exchange rates.",
+    "what is currency trading?": "Currency trading, or forex trading, involves buying and selling currencies to make a profit. Please contact a NesBank agent for indepth and proper guidance.",
+    "how can I invest in currencies?": "You can invest in currencies through our trading platform. Please contact a NesBank agent for indepth and proper guidance.",
+    "what are the current exchange rates?": "I can help you check the current exchange rates. Please specify which currencies you're interested in. Please contact a NesBank agent for indepth and proper guidance.",
+    "what is the minimum deposit for trading?": "The minimum deposit for trading is usually ZAR 100. Please contact a NesBank agent for indepth and proper guidance.",
+    "what are the risks of currency trading?": "Currency trading can be risky due to market volatility. It's important to do your research and invest wisely. Please contact a NesBank agent for indepth and proper guidance.",
+    "can I set up alerts for exchange rates?": "Yes, you can set up alerts in your account settings to notify you of changes in exchange rates. Please contact a NesBank agent for indepth and proper guidance.",
     // account_management
-    "how do I open an investment account?": "To open an investment account, visit the investment section in the app or I can guide you through the process.",
-    "how do I reset my password?": "You can reset your password by visiting the settings section of the app and following the instructions.",
+    "how do I open an investment account?": "To open an investment account, visit the investment section in the app or I can guide you through the process. Please contact a NesBank agent for indepth and proper guidance.",
+    "how do I reset my password?": "You can reset your password by visiting the settings section of the app and following the instructions. Please contact a NesBank agent for indepth and proper guidance.",
     // trading_strategies
-    "what is a trading strategy?": "A trading strategy is a plan to buy and sell currencies based on specific market conditions. Would you like help developing one?",
-    "what is dollar-cost averaging?": "Dollar-cost averaging is an investment strategy where you invest a fixed amount regularly, regardless of the stock price.",
-    "how do I analyze a stock?": "To analyze a stock, consider its financial health, market conditions, and trends. Would you like guidance on specific analysis techniques?",
-    "how can I minimize investment risks?": "You can minimize risks by diversifying your portfolio and conducting thorough research. Would you like more strategies?",
+    "what is a trading strategy?": "A trading strategy is a plan to buy and sell currencies based on specific market conditions. Please contact a NesBank agent for indepth and proper guidance.",
+    "what is dollar-cost averaging?": "Dollar-cost averaging is an investment strategy where you invest a fixed amount regularly, regardless of the stock price. Please contact a NesBank agent for indepth and proper guidance.",
+    "how do I analyze a stock?": "To analyze a stock, consider its financial health, market conditions, and trends. Please contact a NesBank agent for indepth and proper guidance.",
+    "how can I minimize investment risks?": "You can minimize risks by diversifying your portfolio and conducting thorough research. Please contact a NesBank agent for indepth and proper guidance.",
     // financial_education
-    "what is a stock market?": "The stock market is a collection of markets where stocks (shares of ownership in businesses) are bought and sold. Would you like to learn more?",
-    "what is compound interest?": "Compound interest is the interest on a loan or deposit calculated based on both the initial principal and the accumulated interest from previous periods. Would you like examples?",
-    "how can I improve my financial literacy?": "You can improve your financial literacy by reading books, taking courses, and following financial news. Would you like recommendations?",
-    "what is risk tolerance?": "Risk tolerance is the degree of variability in investment returns that an individual is willing to withstand. Would you like help determining your risk tolerance?",
-    "what is a financial advisor?": "A financial advisor provides guidance on investments and financial planning. Are you looking for one?",
-    "how do I diversify my investment portfolio?": "To diversify your portfolio, consider investing in different asset classes, such as stocks, bonds, and real estate. Want tips on specific investments?",
-    "what is the difference between stocks and bonds?": "Stocks represent ownership in a company, while bonds are loans made to a company or government. Would you like more details on either?",
-    "how do I read stock charts?": "Stock charts show historical price movements of stocks. Would you like to know how to interpret them?",
+    "what is a stock market?": "The stock market is a collection of markets where stocks (shares of ownership in businesses) are bought and sold. Please contact a NesBank agent for indepth and proper guidance.",
+    "what is compound interest?": "Compound interest is the interest on a loan or deposit calculated based on both the initial principal and the accumulated interest from previous periods. Please contact a NesBank agent for indepth and proper guidance.",
+    "how can I improve my financial literacy?": "You can improve your financial literacy by reading books, taking courses, and following financial news. Please contact a NesBank agent for indepth and proper guidance.",
+    "what is risk tolerance?": "Risk tolerance is the degree of variability in investment returns that an individual is willing to withstand. Please contact a NesBank agent for indepth and proper guidance.",
+    "what is a financial advisor?": "A financial advisor provides guidance on investments and financial planning. Please contact a NesBank agent for indepth and proper guidance.",
+    "how do I diversify my investment portfolio?": "To diversify your portfolio, consider investing in different asset classes, such as stocks, bonds, and real estate. Please contact a NesBank agent for indepth and proper guidance.",
+    "what is the difference between stocks and bonds?": "Stocks represent ownership in a company, while bonds are loans made to a company or government. Please contact a NesBank agent for indepth and proper guidance.",
+    "how do I read stock charts?": "Stock charts show historical price movements of stocks. Please contact a NesBank agent for indepth and proper guidance.",
     // trading_options
-    "can I invest with a small amount of money?": "Yes, many platforms allow you to start investing with small amounts. Would you like recommendations?",
-    "what are penny stocks?": "Penny stocks are low-priced stocks, typically trading below $5. They can be very volatile. Interested in trading them?",
-    "what is day trading?": "Day trading involves buying and selling securities within the same trading day. Would you like tips on getting started?",
-    "how can I start trading?": "To start trading, you'll need to open a trading account and fund it. Do you want help with the registration process?",
-    "what is the best time to invest?": "The best time to invest depends on your financial goals. Generally, a long-term approach is advised. Want more personalized advice?",
+    "can I invest with a small amount of money?": "Yes, many platforms allow you to start investing with small amounts. Please contact a NesBank agent for indepth and proper guidance.",
+    "what are penny stocks?": "Penny stocks are low-priced stocks, typically trading below $5. They can be very volatile. Please contact a NesBank agent for indepth and proper guidance.",
+    "what is day trading?": "Day trading involves buying and selling securities within the same trading day. Please contact a NesBank agent for indepth and proper guidance.",
+    "how can I start trading?": "To start trading, you'll need to open a trading account and fund it. Please contact a NesBank agent for indepth and proper guidance.",
+    "what is the best time to invest?": "The best time to invest depends on your financial goals. Generally, a long-term approach is advised. Please contact a NesBank agent for indepth and proper guidance.",
   };
 
   // Function to simulate typing effect for bot response
@@ -84,7 +106,7 @@ const GetAdviceModal = ({ isOpen, onClose }) => {
     if (userMessage.trim() === "") return; // Prevent sending empty messages
 
     // Get chatbot response and start typing effect
-    const botResponse = responses[userMessage.toLowerCase()] || "Sorry, I didn't understand that.";
+    const botResponse = responses[userMessage.toLowerCase()] || "Sorry, your response is not in my restricted customer response database. Please try again or contact NesBank for clarification";
     typeChatbotResponse(botResponse);
   };
 
