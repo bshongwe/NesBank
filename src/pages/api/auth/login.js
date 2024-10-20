@@ -1,4 +1,4 @@
-import authService from "../../../services/authService"; // Adjust the import path as needed
+import authService from "../../../services/authService"; // Facilitates Auth
 import Cors from 'cors'; // for middleware
 
 // Initialize the cors middleware
@@ -20,7 +20,7 @@ function runMiddleware(req, res, fn) {
 }
 
 export default async function handler(req, res) {
-  // Run the middleware
+  // Run middleware
   await runMiddleware(req, res, cors);
 
   if (req.method === "POST") {
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
     }
 
     try {
-      // Attempt to log in the user
+      // Attempt to log in user
       const userData = await authService.login(email, password);
       return res.status(200).json({ 
         message: "User logged in successfully.",
