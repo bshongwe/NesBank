@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to NesBank API');
 });
 
-// Example user route
+// User route
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 
