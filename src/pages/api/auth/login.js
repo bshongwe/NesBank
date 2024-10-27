@@ -33,11 +33,11 @@ export default async function handler(req, res) {
 
     try {
       // Attempt to log in user
-      const userData = await authService.login(email, password);
-      return res.status(200).json({ 
-        message: "User logged in successfully.",
-        user: userData // Optionally return user data
-      });
+      await authService.login(email, password);
+      
+      // Redirect to dashboard/profile
+      res.setHeader('Location', '/dashboard');
+      return res.status(302).end();
     } catch (error) {
       return res.status(400).json({ 
         error: error.message || "Login failed. Please try again." 
