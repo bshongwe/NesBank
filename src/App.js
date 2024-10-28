@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import GetStartedModal from './components/GetStartedModal/GetStartedModal';
 import UserDashboard from './components/dashboard/UserDashboard'; // Import UserDashboard component
 import Profile from './pages/Profile';
@@ -9,6 +9,13 @@ import authService from './services/authService'; // For authentication checks
 
 const App = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!authService.isAuthenticated()) {
+      navigate('/login'); // Redirect to login if not authenticated
+    }
+  }, [navigate]);
 
   return (
     <Router>
