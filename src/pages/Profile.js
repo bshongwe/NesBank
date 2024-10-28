@@ -28,9 +28,17 @@ const Profile = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSave = () => {
-    // To implement save logic here later
-    setIsEditing(false);
+  const handleSave = async () => {
+    try {
+      const updatedUser = await authService.updateProfile(formData);
+      setUser(updatedUser);
+      // Optionally, update the local storage to reflect changes
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+      setIsEditing(false);
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      // Handle error appropriately, e.g., show error message to user
+    }
   };
 
   return (

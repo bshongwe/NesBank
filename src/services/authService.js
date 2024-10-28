@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-// Get the API URL from the environment variable
+// Gets API URL from ENVs
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api/auth'; // Fallback to default if not set
 
-// Create an axios instance
+// Creates an axios instance
 const axiosInstance = axios.create({
   baseURL: API_URL,
 });
 
-// Add a request interceptor to include the JWT token in the headers
+// Adds request interceptor to include JWT token in headers
 axiosInstance.interceptors.request.use(
   (config) => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -32,7 +32,7 @@ const authService = {
       return response.data;
     } catch (error) {
       console.error('Error during authentication:', error.response?.data || error.message); // Log detailed error
-      throw new Error(error.response?.data?.error || 'Login failed. Please try again.'); // Use server's error message if available
+      throw new Error(error.response?.data?.error || 'Login failed. Please try again.'); // Server's error message (ALT)
     }
   },
 
@@ -46,10 +46,10 @@ const authService = {
       if (response.data.token) {
         localStorage.setItem('user', JSON.stringify(response.data)); // Save user data to local storage
       }
-      return response.data; // Return the response
+      return response.data;
     } catch (error) {
       console.error('Error during authentication:', error.response?.data || error.message); // Log detailed error
-      throw new Error(error.response?.data?.error || 'Sign up failed. Please try again.'); // Use server's error message if available
+      throw new Error(error.response?.data?.error || 'Sign up failed. Please try again.'); // Server's error message (ALT)
     }
   },
 
@@ -64,6 +64,16 @@ const authService = {
 
   getUser: () => {
     return JSON.parse(localStorage.getItem('user')); // Returns parsed user data
+  },
+
+  updateProfile: async (profileData) => {
+    try {
+      const response = await axiosInstance.put('/profile', profileData);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating profile:', error.response?.data || error.message);
+      throw new Error(error.response?.data?.error || 'Profile update failed. Please try again.'); // handle sending of updated profile data to backend server
+    }
   },
 };
 
