@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link'; // Import Next.js Link component
 import { useRouter } from 'next/router'; // Import useRouter hook
 import authService from '../../services/authService'; // Import the authentication service
+import GetStartedModal from '../GetStartedModal/GetStartedModal'; // Import GetStartedModal
 
 const Navbar = () => {
   const router = useRouter(); // Use useRouter for programmatic navigation
@@ -59,17 +60,7 @@ const Navbar = () => {
       </ul>
 
       {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close-button" onClick={toggleModal}>&times;</span>
-            <h2>User Options</h2>
-            <ul>
-              <li><Link href="/wallet">Wallet</Link></li>
-              <li><Link href="/profile-settings">Profile Settings</Link></li>
-              <li><button onClick={handleLogout}>Logout</button></li>
-            </ul>
-          </div>
-        </div>
+        <GetStartedModal isOpen={isModalOpen} onClose={toggleModal} />
       )}
     </nav>
   );
