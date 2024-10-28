@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { signUp, login } = require('../services/authService');
+const { signUp, login, logout } = require('../services/authService');
 
 router.post('/signup', async (req, res) => {
   try {
@@ -17,6 +17,15 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const { user, token } = await login(email, password);
     res.status(200).json({ user, token });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+router.post('/logout', async (req, res) => {
+  try {
+    logout(); // Call logout function from authService
+    res.status(200).json({ message: 'Logout successful' });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
