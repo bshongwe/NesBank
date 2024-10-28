@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 
+// Back transfer route
+const transferRoutes = require('./routes/transferRoutes');
+app.use('/api/transfer', transferRoutes);
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
