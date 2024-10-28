@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SignIn from './components/auth/SignIn';
+import GetStartedModal from './components/GetStartedModal/GetStartedModal';
 import UserDashboard from './components/dashboard/UserDashboard'; // Import UserDashboard component
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Navbar from './components/navbar/Navbar';
-import GetStartedModal from './components/GetStartedModal/GetStartedModal';
 import authService from './services/authService'; // For authentication checks
 
 const App = () => {
@@ -18,7 +17,7 @@ const App = () => {
       <GetStartedModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} /> {/* Include the modal */}
       <Routes>
         <Route path="/" element={<h1>Home Page</h1>} />
-        <Route path="/login" element={<SignIn />} />
+        <Route path="/login" element={<button onClick={() => setModalOpen(true)}>Login</button>} /> {/* Use button to open modal */}
         {/* Protecting the dashboard route */}
         <Route
           path="/dashboard"
