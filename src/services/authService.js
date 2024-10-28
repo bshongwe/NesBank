@@ -63,9 +63,9 @@ const authService = {
   },
 
   getUser: () => {
-    return JSON.parse(localStorage.getItem('user')); // Return parsed user data
+    return JSON.parse(localStorage.getItem('user')); // Returns parsed user data
   },
 };
 
-export { axiosInstance }; // Exporting axios instance for reuse if needed
+export { axiosInstance };
 export default authService;
