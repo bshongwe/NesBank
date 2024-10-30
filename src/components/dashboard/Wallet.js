@@ -17,6 +17,16 @@ const Wallet = ({ balance, setBalance }) => {
     }
   };
 
+  const handleWithdrawFunds = () => {
+    const withdrawalAmount = parseFloat(amount);
+    if (withdrawalAmount > balance) {
+      alert("Insufficient balance");
+    } else {
+      setBalance(balance - withdrawalAmount);
+      setAmount('');
+    }
+  };
+
   return (
     <div>
       <h2>Wallet Balance</h2>
@@ -29,6 +39,7 @@ const Wallet = ({ balance, setBalance }) => {
       />
       <button onClick={handleAddFunds}>Add Funds</button>
       <button onClick={handleTransferFunds}>Transfer Funds</button>
+      <button onClick={handleWithdrawFunds}>Withdraw Funds</button>
     </div>
   );
 };

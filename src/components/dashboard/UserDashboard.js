@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import Wallet from './Wallet';
 import AddFunds from './AddFunds';
 import TransferFunds from './TransferFunds';
+import WithdrawFunds from './WithdrawFunds'; // Imports WithdrawFunds component
 import TransactionHistory from './TransactionHistory';
 
 const UserDashboard = () => {
   const [balance, setBalance] = useState(0.00); // Initial balance
+  const [transactions, setTransactions] = useState([]);
+
+  const handleTransaction = (transaction) => {
+    setTransactions([...transactions, transaction]);
+  };
 
   return (
     <div>
@@ -15,7 +21,8 @@ const UserDashboard = () => {
       <Wallet balance={balance} setBalance={setBalance} />
       <AddFunds balance={balance} setBalance={setBalance} />
       <TransferFunds balance={balance} setBalance={setBalance} />
-      <TransactionHistory />
+      <WithdrawFunds balance={balance} setBalance={setBalance} /> {/* Adds WithdrawFunds component */}
+      <TransactionHistory transactions={transactions} />
     </div>
   );
 };
