@@ -77,7 +77,9 @@ const GetStartedModal = ({ isOpen, onClose }) => {
     } catch (err) {
       console.error("Authentication error:", err);
       setError(err.message || "NesBank authentication failed. Please try again."); // Display error message
-      toast.error(err.message || "NesBank authentication failed. Please try again."); // Show error notification
+      toast.error(err.message || "NesBank authentication failed. Please try again.", {
+        onClose: () => resetForm() // Reset form after toast disappears
+      }); // Show error notification
     } finally {
       setLoading(false);
     }
