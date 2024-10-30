@@ -4,21 +4,31 @@ import authService from "../../services/authService"; // Adjust the path based o
 
 const GetStartedModal = ({ isOpen, onClose }) => {
   const [isSignIn, setIsSignIn] = useState(true);
-  
+  const [isPasswordReset, setIsPasswordReset] = useState(false); // State for password reset form
+
   // Separate states for sign-in form
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
-  
+
   // Separate states for sign-up form
   const [signUpEmail, setSignUpEmail] = useState("");
   const [signUpPassword, setSignUpPassword] = useState("");
   const [signUpFullName, setSignUpFullName] = useState("");
-  
+
+  // State for password reset form
+  const [resetEmail, setResetEmail] = useState("");
+
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(""); // Error state
 
   const toggleForm = () => {
     setIsSignIn(!isSignIn);
+    setIsPasswordReset(false); // Reset password reset state
+    setError(""); // Reset error when toggling forms
+  };
+
+  const togglePasswordReset = () => {
+    setIsPasswordReset(!isPasswordReset);
     setError(""); // Reset error when toggling forms
   };
 
@@ -30,12 +40,13 @@ const GetStartedModal = ({ isOpen, onClose }) => {
   };
 
   const resetForm = () => {
-    // Reset both sign-in and sign-up fields when the form is closed
+    // Reset all fields when the form is closed
     setSignInEmail("");
     setSignInPassword("");
     setSignUpEmail("");
     setSignUpPassword("");
     setSignUpFullName("");
+    setResetEmail("");
     setError("");
   };
 
@@ -45,7 +56,12 @@ const GetStartedModal = ({ isOpen, onClose }) => {
     setError("");
 
     try {
-      if (isSignIn) {
+      if (isPasswordReset) {
+        console.log("Attempting to reset password for", resetEmail);
+        // Call the password reset method from authService using reset email
+        await authService.resetPassword(resetEmail);
+        toast.success("Password reset link sent! Check your email.");
+      } else if (isSignIn) {
         console.log("Attempting to sign in with", signInEmail, signInPassword);
         // Call the sign-in method from authService using sign-in fields
         await authService.login(signInEmail, signInPassword);
@@ -82,10 +98,24 @@ const GetStartedModal = ({ isOpen, onClose }) => {
         >
           &times;
         </button>
-        <h2 className="text-2xl mb-4">{isSignIn ? "Sign In" : "Sign Up"}</h2>
+        <h2 className="text-2xl mb-4">
+          {isPasswordReset ? "Reset Password" : isSignIn ? "Sign In" : "Sign Up"}
+        </h2>
         {error && <p className="text-red-500 text-sm" aria-live="assertive">{error}</p>}
         <form onSubmit={handleSubmit}>
-          {isSignIn ? (
+          {isPasswordReset ? (
+            // Password reset form fields
+            <>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="mb-3 w-full p-2 border rounded"
+                value={resetEmail}
+                onChange={(e) => setResetEmail(e.target.value)}
+                required
+              />
+            </>
+          ) : isSignIn ? (
             // Sign-in form fields
             <>
               <input
@@ -104,6 +134,14 @@ const GetStartedModal = ({ isOpen, onClose }) => {
                 onChange={(e) => setSignInPassword(e.target.value)}
                 required
               />
+              <p className="text-sm text-center">
+                <span
+                  className="text-blue-600 cursor-pointer"
+                  onClick={togglePasswordReset}
+                >
+                  Forgot Password?
+                </span>
+              </p>
             </>
           ) : (
             // Sign-up form fields
@@ -139,32 +177,49 @@ const GetStartedModal = ({ isOpen, onClose }) => {
             className="w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-200"
             disabled={loading} // Disable button while loading
           >
-            {loading ? (isSignIn ? "Signing In..." : "Signing Up...") : (isSignIn ? "Sign In" : "Sign Up")}
+            {loading ? (
+              isPasswordReset ? "Sending Reset Link..." : isSignIn ? "Signing In..." : "Signing Up..."
+            ) : (
+              isPasswordReset ? "Send Reset Link" : isSignIn ? "Sign In" : "Sign Up"
+            )}
           </button>
         </form>
-        <p className="mt-4 text-sm text-center">
-          {isSignIn ? (
-            <>
-              Do not have an account?{" "}
-              <span
-                className="text-blue-600 cursor-pointer"
-                onClick={toggleForm}
-              >
-                Sign Up
-              </span>
-            </>
-          ) : (
-            <>
-              Already have an account?{" "}
-              <span
-                className="text-blue-600 cursor-pointer"
-                onClick={toggleForm}
-              >
-                Sign In
-              </span>
-            </>
-          )}
-        </p>
+        {!isPasswordReset && (
+          <p className="mt-4 text-sm text-center">
+            {isSignIn ? (
+              <>
+                Do not have an account?{" "}
+                <span
+                  className="text-blue-600 cursor-pointer"
+                  onClick={toggleForm}
+                >
+                  Sign Up
+                </span>
+              </>
+            ) : (
+              <>
+                Already have an account?{" "}
+                <span
+                  className="text-blue-600 cursor-pointer"
+                  onClick={toggleForm}
+                >
+                  Sign In
+                </span>
+              </>
+            )}
+          </p>
+        )}
+        {isPasswordReset && (
+          <p className="mt-4 text-sm text-center">
+            Remember your password?{" "}
+            <span
+              className="text-blue-600 cursor-pointer"
+              onClick={togglePasswordReset}
+            >
+              Sign In
+            </span>
+          </p>
+        )}
       </div>
     </div>
   );
