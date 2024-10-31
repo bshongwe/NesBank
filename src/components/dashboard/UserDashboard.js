@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Wallet from './Wallet';
 import AddFunds from './AddFunds';
 import TransferFunds from './TransferFunds';
-import WithdrawFunds from './WithdrawFunds'; // Imports WithdrawFunds component
+import WithdrawFunds from './WithdrawFunds';
 import TransactionHistory from './TransactionHistory';
-import UserProfile from './UserProfile'; // Import UserProfile component
+import UserProfile from './UserProfile';
+import TradingViewWidget from './TradingViewWidget';
 
 const UserDashboard = () => {
-  const [balance, setBalance] = useState(0.00); // Initial balance
+  const [balance, setBalance] = useState(0.00);
   const [transactions, setTransactions] = useState([]);
 
   const handleTransaction = (transaction) => {
@@ -18,13 +19,13 @@ const UserDashboard = () => {
     <div>
       <h1>Welcome to your NesBank Dashboard</h1>
       <p>Manage your account, view transactions</p>
-      {/* Dashboard features here */}
-      <UserProfile /> {/* Adds UserProfile component */}
+      <UserProfile />
       <Wallet balance={balance} setBalance={setBalance} />
       <AddFunds balance={balance} setBalance={setBalance} />
       <TransferFunds balance={balance} setBalance={setBalance} />
-      <WithdrawFunds balance={balance} setBalance={setBalance} /> {/* Adds WithdrawFunds component */}
+      <WithdrawFunds balance={balance} setBalance={setBalance} />
       <TransactionHistory transactions={transactions} />
+      <TradingViewWidget /> {/* TradingView widget */}
     </div>
   );
 };

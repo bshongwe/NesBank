@@ -1,0 +1,8 @@
+.tradingviewWidgetContainer {
+    width: 100%;
+    height: 500px; /* Adjust height as needed */
+}
+#chart {
+    width: 100%;
+    height: 100%;
+}
