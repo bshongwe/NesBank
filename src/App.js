@@ -6,9 +6,12 @@ import Profile from './pages/Profile';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Navbar from './components/navbar/Navbar';
 import authService from './services/authService'; // For authentication checks
+import TradingViewWidget from './components/dashboard/TradingViewWidget'; // Import TradingViewWidget component
+import styles from './App.module.css'; // Import CSS module
 
 const App = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isTradingViewModalOpen, setTradingViewModalOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,12 +23,21 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      <button onClick={() => setModalOpen(true)}>Get Started</button> {/* Add a button to open the modal */}
-      <GetStartedModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} /> {/* Include the modal */}
+      <button onClick={() => setModalOpen(true)}>Get Started</button> {/* Add a button to open modal */}
+      <button onClick={() => setTradingViewModalOpen(true)}>Open TradingView Widget</button> {/* Button to open TradingView modal */}
+      <GetStartedModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} /> {/* Include modal */}
+      {isTradingViewModalOpen && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <span className={styles.close} onClick={() => setTradingViewModalOpen(false)}>&times;</span>
+            <TradingViewWidget />
+          </div>
+        </div>
+      )}
       <Routes>
         <Route path="/" element={<h1>Home Page</h1>} />
         <Route path="/login" element={<button onClick={() => setModalOpen(true)}>Login</button>} /> {/* Use button to open modal */}
-        {/* Protecting the dashboard route */}
+        {/* Protecting dashboard route */}
         <Route
           path="/dashboard"
           element={
@@ -34,7 +46,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        {/* Adding a protected route for the profile */}
+        {/* Adds protected route for profile */}
         <Route
           path="/profile"
           element={
