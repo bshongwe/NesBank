@@ -1,3 +1,4 @@
+"use client";
 import { useState } from 'react';
 import Account from "@/components/Account";
 import CallToAction from "@/components/CallToAction";
