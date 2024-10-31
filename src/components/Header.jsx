@@ -12,6 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import GetAdviceModal from "./GetAdviceModal/GetAdviceModal";
 import GetStartedModal from "./GetStartedModal/GetStartedModal";
+import TradingViewWidget from "./dashboard/TradingViewWidget"; // Import TradingViewWidget component
 import authService from "@/services/authService";  // Import authService for authentication handling
 
 const MobileNavLink = ({ children, ...props }) => {
@@ -30,6 +31,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isGetStartedOpen, setIsGetStartedOpen] = useState(false);  // State for Get Started Modal
   const [isGetAdviceOpen, setIsGetAdviceOpen] = useState(false);    // State for Get Advice Modal
+  const [isTradingViewModalOpen, setIsTradingViewModalOpen] = useState(false); // State for TradingView Modal
   const [isAuthenticated, setIsAuthenticated] = useState(false);    // State for authentication
 
   useEffect(() => {
@@ -51,6 +53,14 @@ const Header = () => {
   const handleSignOut = () => {
     authService.logout();  // Clear user data from localStorage
     setIsAuthenticated(false);  // Update state to reflect sign-out
+  };
+
+  const handleOpenTradingViewModal = () => {
+    setIsTradingViewModalOpen(true);
+  };
+
+  const handleCloseTradingViewModal = () => {
+    setIsTradingViewModalOpen(false);
   };
 
   return (
@@ -95,6 +105,12 @@ const Header = () => {
                   className="hidden lg:block"
                 >
                   Get Started
+                </Button>
+                <Button
+                  onClick={handleOpenTradingViewModal}  // Open TradingView Widget
+                  className="hidden lg:block"
+                >
+                  Open TradingView Widget
                 </Button>
               </>
             )}
@@ -161,6 +177,9 @@ const Header = () => {
                                 <Button onClick={() => setIsGetStartedOpen(true)}>
                                   Get Started
                                 </Button>
+                                <Button onClick={handleOpenTradingViewModal}>
+                                  Open TradingView Widget
+                                </Button>
                               </>
                             )}
                           </div>
@@ -186,6 +205,16 @@ const Header = () => {
         isOpen={isGetStartedOpen}  // Opened via "Get Started" button
         onClose={() => setIsGetStartedOpen(false)}
       />
+
+      {/* TradingView Modal */}
+      {isTradingViewModalOpen && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <span className={styles.close} onClick={handleCloseTradingViewModal}>&times;</span>
+            <TradingViewWidget />
+          </div>
+        </div>
+      )}
     </header>
   );
 };
