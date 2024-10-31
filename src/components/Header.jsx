@@ -14,6 +14,7 @@ import GetAdviceModal from "./GetAdviceModal/GetAdviceModal";
 import GetStartedModal from "./GetStartedModal/GetStartedModal";
 import TradingViewWidget from "./dashboard/TradingViewWidget"; // Import TradingViewWidget component
 import authService from "@/services/authService";  // Import authService for authentication handling
+import styles from './Header.module.css';  // Import the CSS module
 
 const MobileNavLink = ({ children, ...props }) => {
   return (
