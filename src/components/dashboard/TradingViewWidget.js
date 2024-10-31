@@ -37,7 +37,7 @@ const TradingViewWidget = () => {
                 container_id: 'chart',
                 show_popup_button: true,
                 popup_width: '1000',
-                popup_height: '650'
+                popup_height: '2000'
             });
         };
         document.body.appendChild(script);
