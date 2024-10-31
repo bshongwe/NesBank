@@ -15,7 +15,7 @@ const CallToAction = () => {
       <Container className="relative">
         <div className="mx-auto max-w-md sm:text-center">
           <Title
-            title="Get your first tips today"
+            title="Get banking & investments tips today"
             className="text-3xl text-white sm:text-4xl"
           />
           <p className="mt-4 text-lg text-gray-300">
