@@ -24,7 +24,7 @@ const Hero = () => {
               loop
               muted
               className="w-full lg:w-3/4"
-              style={{ maxWidth: "60px" }}
+              style={{ maxWidth: "400px" }}
             ></video>
           </div>
 
@@ -51,17 +51,17 @@ const Hero = () => {
           <div className="lg:col-span-12 lg:flex lg:gap-8 lg:mt-10">
 
             {/* Embedded YouTube Video */}
-            <div className="relative w-full pt-[56.25%] lg:w-1/2 mt-10 lg:mt-0"> {/* 16:9 aspect ratio */}
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/6wOdJZqzvc0"
-                title="NesBank app promo"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              ></iframe>
-            </div>
+            <div className="relative w-full pt-[56.25%]"> {/* 16:9 aspect ratio */}
+            <iframe
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/6wOdJZqzvc0"
+              title="NesBank app promo"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          </div>
 
             {/* PhoneFrame with Background Design */}
             <div className="relative mt-10 sm:mt-20 lg:mt-0 lg:w-1/2">
