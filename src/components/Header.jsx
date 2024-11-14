@@ -10,9 +10,9 @@ import { IoIosArrowUp } from "react-icons/io";
 import { navData } from "@/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import GetAdviceModal from "./GetAdviceModal/GetAdviceModal";
-import GetStartedModal from "./GetStartedModal/GetStartedModal";
-import TradingViewWidget from "./dashboard/TradingViewWidget"; // Import TradingViewWidget component
+import GetAdviceModal from "./GetAdviceModal/GetAdviceModal"; // for NesBot
+import GetStartedModal from "./GetStartedModal/GetStartedModal"; // for Signup-Sign-in Modal
+import TradingViewWidget from "./dashboard/TradingViewWidget"; // Import TradingView Widget
 import authService from "@/services/authService";  // Import authService for authentication handling
 import styles from './Header.module.css';  // Import the CSS module
 
@@ -36,21 +36,21 @@ const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);    // State for authentication
 
   useEffect(() => {
-    // Check if the user is authenticated when the component mounts
+    // Checks if user is authenticated when component mounts
     setIsAuthenticated(authService.isAuthenticated());
 
-    // Handle the scroll event for header shadow effect
+    // Handles scroll event for header shadow effect
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
     
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up the scroll event listener when the component unmounts
+    // Cleans up scroll event listener when component unmounts
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle sign-out logic
+  // Handles sign-out logic
   const handleSignOut = () => {
     authService.logout();  // Clear user data from localStorage
     setIsAuthenticated(false);  // Update state to reflect sign-out
@@ -197,7 +197,7 @@ const Header = () => {
 
       {/* Get Advice Modal */}
       <GetAdviceModal
-        isOpen={isGetAdviceOpen}
+        isOpen={isGetAdviceOpen}  // Opened via "Get Advice" button
         onClose={() => setIsGetAdviceOpen(false)}
       />
 
