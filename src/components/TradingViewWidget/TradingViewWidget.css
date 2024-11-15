@@ -1,0 +1,8 @@
+.tradingview-widget {
+    width: 100%;
+    height: 500px; /* Adjusts height */
+}
+#chart {
+    width: 100%;
+    height: 100%;
+}

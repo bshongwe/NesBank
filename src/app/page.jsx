@@ -5,7 +5,7 @@ import CallToAction from "@/components/CallToAction";
 import Feature from "@/components/Feature";
 import Hero from "@/components/Hero";
 import Reviews from "@/components/Reviews";
-import TradingViewWidget from "@/components/TradingViewWidget";
+import TradingViewWidget from "@/components/TradingViewWidget/TradingViewWidget";
 import styles from '@/styles/Home.module.css';
 
 export default function Home() {
