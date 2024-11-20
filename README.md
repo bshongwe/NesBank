@@ -297,9 +297,9 @@ Here's how we can generate GitHub issues based on your project's outlined featur
 
 ---
 
-### GitHub Issues Example
+### GitHub Issues Examples (yet-to-be-created)
 
-For contributors to join the project and work on outstanding features, here are examples of potential GitHub issues you can create:
+For contributors to join the project and work on outstanding features, here are examples of potential GitHub issues:
 
 1. **Responsive UI Implementation**  
    *Description*: Implement a responsive UI for the platform using Tailwind CSS, ensuring that it works across all devices and screen sizes.  
@@ -321,7 +321,5 @@ For contributors to join the project and work on outstanding features, here are 
    *Feature*: Chatbot  
    *Status*: Ongoing
 
-By clearly outlining these tasks in the project README, and associating them with relevant GitHub issues, contributors can easily understand which features need attention and how they can help!
 
-Let me know if you need help with the GitHub issues or anything else!
 
