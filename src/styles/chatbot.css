@@ -10,10 +10,6 @@
   box-shadow: 0 8px 32px rgba(0, 0, 255, 0.4); /* Enhanced glossy effect */
   border: 1px solid rgba(255, 255, 255, 0.1);
   height: 500px; /* Increased height for the chat modal */
-  width: 90%; /* Wider chat box */
-  max-width: 1200px; /* Optional: set a maximum width */
-  resize: both; /* Make the chat box resizable */
-  overflow: auto; /* Ensure overflow is handled when resized */
 }
 
 .chatbot-messages {
