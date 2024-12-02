@@ -1,80 +1,42 @@
 # 💼 NesBank - Investment Banking App
 
+![Visits Badge](https://badges.pufler.dev/visits/bshongwe/NesBank)
+![GitHub Repo Stars](https://img.shields.io/github/stars/bshongwe/NesBank)
+![GitHub Forks](https://img.shields.io/github/forks/bshongwe/NesBank)
+![GitHub Issues](https://img.shields.io/github/issues/bshongwe/NesBank)
+![GitHub License](https://img.shields.io/github/license/bshongwe/NesBank)
+
 **NesBank** is a modern investment banking platform designed to help users manage their investments efficiently, track portfolio performance, and explore new financial opportunities. In addition to core investment features, **NesBank** includes user authentication (sign in/sign out) and a chatbot for personalized investment advice.
 
 ---
 
 ## 🚀 **Tech Stack**
 
-### 1. **Frontend: React & Next.js** ⚛️
+| **Technology**      | **Description**                                                                                     | **Why Used?**                                                                                                          |
+|---------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| **Frontend**        |                                                                                                     |                                                                                                                       |
+| React ⚛️            | JavaScript library for building user interfaces.                                                   | Provides dynamic, reusable components and a smooth user experience.                                                  |
+| Next.js 🚀          | React framework for building server-side rendered applications.                                     | Enables server-side rendering (SSR) for improved SEO and performance.                                                |
+| Tailwind CSS 🖌️    | A utility-first CSS framework for quickly building custom designs.                                   | Provides a highly customizable and responsive design framework for the frontend.                                    |
+| **Backend**         |                                                                                                     |                                                                                                                       |
+| Node.js 🛠️         | JavaScript runtime environment for building scalable applications.                                  | Ensures a fast, asynchronous, and non-blocking server for handling real-time user interactions.                      |
+| Express.js 🧰      | Minimalist web framework for Node.js, used for building RESTful APIs.                               | Simplifies routing, request handling, and API creation, making it efficient for backend development.                |
+| **Database**        |                                                                                                     |                                                                                                                       |
+| MongoDB 🗃️         | NoSQL database for storing unstructured data.                                                       | Provides flexible and scalable storage for user data and financial information.                                      |
+| **Authentication**  |                                                                                                     |                                                                                                                       |
+| JWT 🔑              | JSON Web Tokens for stateless authentication.                                                       | Ensures secure, token-based authentication that doesn’t require session storage.                                     |
+| **Payment Gateway** |                                                                                                     |                                                                                                                       |
+| Stripe 💳           | Payment gateway for handling financial transactions.                                                | Securely handles payments, making it easy for users to deposit and withdraw funds.                                   |
+| PayPal 💳           | Online payment system for seamless transaction handling.                                             | Another reliable payment system for secure transactions in the platform.                                            |
+| **Containerization**|                                                                                                     |                                                                                                                       |
+| Docker 🐳           | Containerization platform for building, shipping, and running applications in isolated environments. | Ensures consistency between development, testing, and production environments.                                       |
+| **Cloud Services**  |                                                                                                     |                                                                                                                       |
+| Vercel 🌐           | Deployment platform for frontend hosting and serverless functions.                                  | Provides fast, global CDN hosting for frontend assets with CI/CD support.                                           |
+| Google Cloud (GCP) 🌩️ | Cloud platform for backend hosting and database management.                                          | Offers scalable and reliable cloud infrastructure for backend services and database storage.                         |
+| **Others**          |                                                                                                     |                                                                                                                       |
+| MongoDB Atlas 🌍    | Managed database platform for MongoDB.                                                              | Ensures high availability, automated backups, and security features for MongoDB deployments.                         |
 
-- **React**: Provides a modular, dynamic front-end experience with reusable components such as user authentication forms, chatbot interactions, and financial dashboards.
-- **Next.js**: Utilizes server-side rendering (SSR) to enhance SEO, improve performance, and ensure faster load times for the investment platform.
-- **Tailwind CSS**: Enables quick, responsive, and modern UI design, ensuring that the app remains accessible across all devices.
-
-**Why?**  
-Combining React and Next.js ensures smooth client-server communication and enhances the app's performance, while Tailwind CSS makes the development of responsive layouts efficient.
-
-### 2. **Backend: Node.js & Express** 🛠️
-
-- **Node.js**: Provides the runtime environment for handling asynchronous user requests and ensures that the platform can scale efficiently.
-- **Express**: A minimalistic, fast backend framework used to build RESTful APIs that handle tasks such as user authentication, investment transactions, and chatbot responses.
-
-**Why?**  
-This combination makes NesBank's backend lightweight, scalable, and capable of handling real-time requests efficiently.
-
-### 3. **Database: MongoDB** 🗃️
-
-- **MongoDB**: A NoSQL database for storing user data, investment portfolios, transaction history, and chatbot interactions. Its flexibility allows for efficient storage and retrieval of unstructured data related to the investments.
-
-**Why?**  
-MongoDB ensures that investment records and financial data are securely stored while being flexible enough to handle ever-changing financial data models.
-
-### 4. **Authentication: JWT & AuthService** 🔑
-
-- **JWT (JSON Web Tokens)**: Provides a secure, stateless authentication mechanism for user sign-in and sign-out operations. Users stay logged in securely during their sessions without having to repeatedly authenticate.
-- **AuthService**: Manages authentication operations such as login, signup, and password recovery. This service ensures secure access to the app’s investment features.
-
-**Why?**  
-JWT allows for secure user authentication, while AuthService ensures that user sessions and permissions are handled correctly across the platform.
-
-### 5. **Investment Features** 📈
-
-- **Investment Portfolio Management**: Users can view, add, and track their investments across multiple asset classes, including stocks, bonds, and cryptocurrencies.
-- **Transaction History**: Records all user transactions, providing a transparent history of buy/sell activities.
-- **Performance Analytics**: Provides visual analytics and charts to display the performance of the user's investment portfolio over time.
-
-**Why?**  
-The investment features allow users to manage their finances with ease and provide the necessary data to make informed decisions about their financial future.
-
-### 6. **Chatbot: GetAdviceModal** 🤖
-
-- **AI-Powered Chatbot**: Offers personalized investment advice based on user preferences, portfolio performance, and market trends. The chatbot helps users discover new investment opportunities or manage existing ones.
-
-**Why?**  
-The chatbot improves user engagement by providing instant assistance, guiding users through complex investment decisions, and offering insights into financial markets.
-
-### 7. **Payment Integration: Stripe & PayPal** 💳
-
-- **Stripe & PayPal**: These payment gateways handle secure deposits and withdrawals, allowing users to transfer funds into their investment accounts.
-
-**Why?**  
-Stripe and PayPal ensure that users can securely manage their funds and transactions, making NesBank a reliable financial platform.
-
-### 8. **Containerization: Docker** 🐳
-
-- **Docker**: Containerizes the app to ensure a consistent environment from development to production. This minimizes compatibility issues between different environments.
-
-**Why?**  
-Docker ensures that NesBank runs the same way on any machine, making deployments smoother and avoiding configuration issues.
-
-### 9. **Deployment: Vercel & GCP** 🚀
-
-- **Vercel**: Hosts the frontend, delivering optimized assets for faster and more efficient browsing.
-- **Google Cloud Platform (GCP)**: Manages the backend and database, ensuring high availability and scalability for the app.
-
-**Why?**  
-Vercel ensures quick load times and a great user experience, while GCP provides robust infrastructure for backend services.
+---
 
 ## 📄 License
 
@@ -89,21 +51,12 @@ Choose the license that fits your needs. For commercial usage, you are required 
 
 ## 🔑 **Key Features**
 
-### 🔐 User Authentication
-- **Feature Stack**: React, Next.js, Node.js, MongoDB, JWT  
-- **How it works**: Secure user login and signup modals, with session persistence via JWT. Users can securely access their investment accounts after signing in.
-
-### 📊 Investment Portfolio Management
-- **Feature Stack**: React, MongoDB, Node.js  
-- **How it works**: Users can manage and track their investments, view portfolio performance, and access detailed investment data. All data is stored in MongoDB for quick and efficient access.
-
-### 🤖 Chatbot (Investment Advice)
-- **Feature Stack**: React, Node.js, Custom Chatbot Modal  
-- **How it works**: The chatbot offers investment tips, suggests new opportunities, and assists users with managing their portfolios. It provides a conversational interface for easy navigation.
-
-### 💸 Fund Transfers
-- **Feature Stack**: Stripe, PayPal, Node.js  
-- **How it works**: Users can securely deposit and withdraw funds via Stripe and PayPal integration. Transactions are handled securely using these payment gateways.
+| **Feature**                          | **Feature Stack**                          | **How it works**                                                                                                                                                    |
+|--------------------------------------|--------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **🔐 User Authentication**           | React, Next.js, Node.js, MongoDB, JWT      | Secure user login and signup modals, with session persistence via JWT. Users can securely access their investment accounts after signing in.                       |
+| **📊 Investment Portfolio Management**| React, MongoDB, Node.js                    | Users can manage and track their investments, view portfolio performance, and access detailed investment data. All data is stored in MongoDB for quick and efficient access. |
+| **🤖 Chatbot (Investment Advice)**   | React, Node.js, Custom Chatbot Modal       | The chatbot offers investment tips, suggests new opportunities, and assists users with managing their portfolios. It provides a conversational interface for easy navigation. |
+| **💸 Fund Transfers**                | Stripe, PayPal, Node.js                    | Users can securely deposit and withdraw funds via Stripe and PayPal integration. Transactions are handled securely using these payment gateways.                  |
 
 ---
 
@@ -297,29 +250,14 @@ Here's how we can generate GitHub issues based on your project's outlined featur
 
 ---
 
-### GitHub Issues Examples (yet-to-be-created)
+### GitHub Issues (yet-to-be-created)
 
-For contributors to join the project and work on outstanding features, here are examples of potential GitHub issues:
-
-1. **Responsive UI Implementation**  
-   *Description*: Implement a responsive UI for the platform using Tailwind CSS, ensuring that it works across all devices and screen sizes.  
-   *Feature*: Frontend  
-   *Status*: ✅ Completed
-
-2. **Investment Transactions API**  
-   *Description*: Develop and integrate a RESTful API to handle investment transactions (buy/sell) for users.  
-   *Feature*: Backend  
-   *Status*: Ongoing
-
-3. **Investment Portfolio Management**  
-   *Description*: Build the user interface and backend API logic for users to view, add, and track their investments in various asset classes.  
-   *Feature*: Investment Features  
-   *Status*: Ongoing
-
-4. **AI-Powered Chatbot**  
-   *Description*: Integrate an AI-powered chatbot to offer personalized investment advice.  
-   *Feature*: Chatbot  
-   *Status*: Ongoing
+| **Issue**                           | **Description**                                                                                   | **Feature**          | **Status**  |
+|-------------------------------------|---------------------------------------------------------------------------------------------------|----------------------|-------------|
+| **📱 Responsive UI Implementation**    | Implement a responsive UI for the platform using Tailwind CSS, ensuring that it works across all devices and screen sizes. | 🌐 Frontend             | ✅ Completed |
+| **💳 Investment Transactions API**     | Develop and integrate a RESTful API to handle investment transactions (buy/sell) for users.       | ⚙️ Backend              | 🔄 Ongoing     |
+| **📈 Investment Portfolio Management** | Build the user interface and backend API logic for users to view, add, and track their investments in various asset classes. | 📊 Investment Features  | 🔄 Ongoing     |
+| **🤖 AI-Powered Chatbot**              | Integrate an AI-powered chatbot to offer personalized investment advice.                          | 💬 Chatbot              | 🔄 Ongoing     |
 
 
 
