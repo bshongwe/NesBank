@@ -16,7 +16,7 @@
     "clsx": "^2.0.0",
     "cors": "^2.8.5",
     "eslint": "8.45.0",
-    "eslint-config-next": "13.4.12",
+    "eslint-config-next": "13.5.11",
     "framer-motion": "^10.14.0",
     "install": "^0.13.0",
     "jsonwebtoken": "^9.0.2",
